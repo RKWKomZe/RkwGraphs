@@ -74,21 +74,11 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function barsAction()
     {
 
-        $labels = "Bedeutung#Einschätzung der volkswirtschaftlichen Bedeutung digitaler's Plattformen|Nutzungshäufigkeit#Nutzungshäufigkeit digitaler Plattformen durch Unternehmen und Organisationen|Absicherung#Gefährdung der sozialen Absicherung von Arbeitnehmern und Rentnern durch digitale Plattformen|Förderung#Förderung digitaler Plattformen durch die nationale Politik|Nutzung#Zukünftige Nutzung digitaler Plattformen durch Gründer";
-
         $contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
 
         $colours = $this->settings['colours'];
-
-
-        $series = "
-negativ|8.0|2.0|6.0|6.0|0.0
-eher negativ|24.0|32.0|33.0|28.0|2.0
-teils-teils|10.|13.0|15.0|19.0|2.0
-eher positiv|46.0|40.0|37.0|44.0|37.0
-positiv|12.0|13.0|9.0|3.0|59.0
-";
-
+        $labels = $this->settings['labels'];
+        $series = $this->settings['series'];
 
         // Add rendering call to footer after lib
         $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
