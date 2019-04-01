@@ -26,7 +26,7 @@
 
 						</TCEforms>
 					</switchableControllerActions>
-					<colours>
+					<settings.colours>
 						<TCEforms>
 							<label>Colours</label>
 							<config>
@@ -35,7 +35,7 @@
 								<eval>trim</eval>
 							</config>
 						</TCEforms>
-					</colours>
+					</settings.colours>
 				</el>
 			</ROOT>
 		</sDEF>

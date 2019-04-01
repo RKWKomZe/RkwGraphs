@@ -20,36 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
-    public $flexFormData = [];
-
-
-    public function getFlexFormContent()
-    {
-        $ttContent = $this->configurationManager->getContentObject()->data;
-
-        $flexFormData =[];
-
-        if (is_array($ttContent)) {
-
-            $xml = simplexml_load_string($ttContent['pi_flexform']);
-
-            if (
-                (isset($xml))
-                && (isset($xml->data))
-                && (is_object($xml->data->sheet))
-            ) {
-                foreach ($xml->data->sheet as $sheet) {
-                    foreach ($sheet->language->field as $field) {
-                        $flexFormData[str_replace('settings.flexform.', '', (string)$field->attributes())] = (string)$field->value;
-                    }
-                }
-            }
-        }
-
-        $this->flexFormData = $flexFormData;
-    }
-
-
     /**
      * action pie
      *
@@ -104,18 +74,11 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function barsAction()
     {
 
-        //  $colours = GeneralUtility::trimExplode(',', addslashes(', #006349, #333333'), true);
-
-        //  $colours = '#ff0000|#e64415|#333333|#006349|#74b929';
-
         $labels = "Bedeutung#Einschätzung der volkswirtschaftlichen Bedeutung digitaler's Plattformen|Nutzungshäufigkeit#Nutzungshäufigkeit digitaler Plattformen durch Unternehmen und Organisationen|Absicherung#Gefährdung der sozialen Absicherung von Arbeitnehmern und Rentnern durch digitale Plattformen|Förderung#Förderung digitaler Plattformen durch die nationale Politik|Nutzung#Zukünftige Nutzung digitaler Plattformen durch Gründer";
 
         $contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
 
-
-        $this->getFlexFormContent();
-
-        $colours = $this->flexFormData['colours'];
+        $colours = $this->settings['colours'];
 
 
         $series = "

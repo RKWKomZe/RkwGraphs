@@ -18,6 +18,9 @@ plugin.tx_rkwgraphs {
   mvc {
     #callDefaultActionIfActionCantBeResolved = 1
   }
+
+  settings {
+  }
 }
 
 
