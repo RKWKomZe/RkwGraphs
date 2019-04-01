@@ -23,8 +23,19 @@
 									</numIndex>
 								</items>
 							</config>
+
 						</TCEforms>
 					</switchableControllerActions>
+					<colors>
+						<TCEforms>
+							<label>Colors</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</colors>
 				</el>
 			</ROOT>
 		</sDEF>
