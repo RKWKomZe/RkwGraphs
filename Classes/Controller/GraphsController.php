@@ -27,13 +27,11 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $ttContent = $this->configurationManager->getContentObject()->data;
 
-
         $flexFormData =[];
 
         if (is_array($ttContent)) {
 
             $xml = simplexml_load_string($ttContent['pi_flexform']);
-
 
             if (
                 (isset($xml))
@@ -106,19 +104,18 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function barsAction()
     {
 
-        $colours = GeneralUtility::trimExplode(',', addslashes(', #006349, #333333'), true);
+        //  $colours = GeneralUtility::trimExplode(',', addslashes(', #006349, #333333'), true);
 
+        //  $colours = '#ff0000|#e64415|#333333|#006349|#74b929';
 
-        $colours = '#ff0000|#e64415|#333333|#006349|#74b929';
         $labels = "Bedeutung#Einschätzung der volkswirtschaftlichen Bedeutung digitaler's Plattformen|Nutzungshäufigkeit#Nutzungshäufigkeit digitaler Plattformen durch Unternehmen und Organisationen|Absicherung#Gefährdung der sozialen Absicherung von Arbeitnehmern und Rentnern durch digitale Plattformen|Förderung#Förderung digitaler Plattformen durch die nationale Politik|Nutzung#Zukünftige Nutzung digitaler Plattformen durch Gründer";
-
 
         $contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
 
 
         $this->getFlexFormContent();
 
-        $colours = $this->flexFormData['colors'];
+        $colours = $this->flexFormData['colours'];
 
 
         $series = "
