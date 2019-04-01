@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-02-08T15:53:32Z" product-name="rkw_graphics">
+		<header/>
+		<body>
+			<trans-unit id="tx_rkw_graphics_domain_model_graphics">
+				<source>Graphics</source>
+			</trans-unit>
+			<trans-unit id="tx_rkw_graphics_domain_model_graphics.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="tx_rkwgraphics_domain_model_graphics">
+				<source>Graphics</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

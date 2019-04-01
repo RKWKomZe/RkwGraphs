@@ -1,0 +1,133 @@
+{namespace rkwGraphics=RKW\RkwGraphics\ViewHelpers}
+
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:render partial="Chart" arguments="{_all}" />
+
+    <!-- Build JS -->
+    <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
+    <script type="{type}">
+        var txRkwGraphicsChartOptions{contentUid} = {
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+            chart: {
+                width: 600,
+                height: 500,
+                type: 'donut',
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '65%'
+                    }
+                }
+            },
+            labels: <rkwGraphics:jsArray data="{labels}" />,
+            series: <rkwGraphics:jsArray data="{series}" checkFloat="true" />,
+            fill: {
+                <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+                colors: <rkwGraphics:jsArray data="{colours}" />,
+            },
+            colors: <rkwGraphics:jsArray data="{colours}" />,
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: '16px',
+                    fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
+                },
+                dropShadow: {
+                    enabled: true,
+                    top: 1,
+                    left: 2,
+                    blur: 3,
+                    opacity: 0.45
+                }
+            },
+            legend: {
+                show: true,
+                fontSize: '16px',
+                fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
+            },
+            tooltip: {
+                enabled: false,
+            },
+            responsive: [
+
+                {
+                    breakpoint: 1280,
+                    options: {
+                        chart: {
+                            width: 500,
+                            height: 500,
+                        },
+                        legend: {
+                            position: 'bottom',
+                        },
+                    }
+                },
+                {
+                    breakpoint: 1025,
+                    options: {
+                        chart: {
+                            width: 600,
+                            height: 500,
+                        },
+                        legend: {
+                            position: 'right',
+                            fontSize: '14px',
+                        },
+                        dataLabels: {
+                            style: {
+                                fontSize: '14px',
+                            },
+                            dropShadow: {
+                                enabled: false,
+                            },
+                        },
+                    }
+                },
+                {
+                    breakpoint: 660,
+                    options: {
+                        chart: {
+                            width: 500,
+                            height: 500,
+                        },
+                        legend: {
+                            position: 'bottom',
+                        },
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    options: {
+                        chart: {
+                            width: 310,
+                            height: 310,
+                        },
+                        plotOptions: {
+                            pie: {
+                                donut: {
+                                    size: '50%'
+                                }
+                            }
+                        },
+                    }
+                }
+            ]
+        };
+
+    </script>
+</f:section>
