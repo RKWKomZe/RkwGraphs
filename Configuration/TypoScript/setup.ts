@@ -26,7 +26,6 @@ page.includeJSFooterlibs.txRkwGraphsApexCharts  = EXT:rkw_graphs/Resources/Publi
 page.includeCSS.txRkwGraphsCharts  = EXT:rkw_graphs/Resources/Public/Css/Charts.css
 
 
-
 plugin.tx_rkwgraphs._CSS_DEFAULT_STYLE (
 
 )

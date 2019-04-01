@@ -1,4 +1,4 @@
-{namespace rkwGraphics=RKW\RkwGraphics\ViewHelpers}
+{namespace rkwGraphs=RKW\RkwGraphs\ViewHelpers}
 
 <f:layout name="Default" />
 
@@ -20,7 +20,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <!-- Build JS -->
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
-        var txRkwGraphicsChartOptions{contentUid} = {
+        var txRkwGraphsChartOptions{contentUid} = {
             <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
             chart: {
                 width: 600,
@@ -34,13 +34,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     }
                 }
             },
-            labels: <rkwGraphics:jsArray data="{labels}" />,
-            series: <rkwGraphics:jsArray data="{series}" checkFloat="true" />,
+            labels: <rkwGraphs:jsArray data="{labels}" />,
+            series: <rkwGraphs:jsArray data="{series}" checkFloat="true" />,
             fill: {
                 <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                colors: <rkwGraphics:jsArray data="{colours}" />,
+                colors: <rkwGraphs:jsArray data="{colours}" />,
             },
-            colors: <rkwGraphics:jsArray data="{colours}" />,
+            colors: <rkwGraphs:jsArray data="{colours}" />,
             dataLabels: {
                 enabled: true,
                 style: {

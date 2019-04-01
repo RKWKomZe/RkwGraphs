@@ -1,4 +1,4 @@
-{namespace rkwGraphics=RKW\RkwGraphics\ViewHelpers}
+{namespace rkwGraphs=RKW\RkwGraphs\ViewHelpers}
 
 <f:layout name="Default" />
 
@@ -21,7 +21,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <!-- Build JS -->
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
-        var txRkwGraphicsChartOptions{contentUid} = {
+        var txRkwGraphsChartOptions{contentUid} = {
             <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
             chart: {
                 width: 900,
@@ -39,8 +39,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 width: 1,
                 colors: ["#fff"],
             },
-            series: <rkwGraphics:bars.series data="{series}" />,
-            colors: <rkwGraphics:jsArray data="{colours}" />,
+            series: <rkwGraphs:bars.series data="{series}" />,
+            colors: <rkwGraphs:jsArray data="{colours}" />,
             dataLabels: {
                 enabled:true,
                 style: {
@@ -85,12 +85,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
             },
             xaxis: {
                 <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                categories: <rkwGraphics:jsArray data="{labels}" />,
+                categories: <rkwGraphs:jsArray data="{labels}" />,
                 labels: {
                     trim : false,
                     rotate: -45,
                     <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                    minHeight: <rkwGraphics:bars.xAxisLabelHeight data="{labels}" />,
+                    minHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
                     rotateAlways: true,
                     formatter: function(val) {
                         var strArray = val.toString().split('#');

@@ -1,5 +1,5 @@
 <?php
-namespace RKW\RkwGraphics\Controller;
+namespace RKW\RkwGraphs\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -15,9 +15,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  ***/
 
 /**
- * GraphicsController
+ * GraphsController
  */
-class GraphicsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
 
@@ -40,13 +40,13 @@ class GraphicsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $series = '65|8|27';
 
         // Add rendering call to footer after lib
-        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphicsElement' . $contentUid] = '
+        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
             <script type="text/javascript">
-                var txRkwGraphicsChart' . $contentUid . ' = new ApexCharts(
-                    document.querySelector("#txRkwGraphicsChart' . $contentUid . '"),
-                    txRkwGraphicsChartOptions' . $contentUid . '
+                var txRkwGraphsChart' . $contentUid . ' = new ApexCharts(
+                    document.querySelector("#txRkwGraphsChart' . $contentUid . '"),
+                    txRkwGraphsChartOptions' . $contentUid . '
                 );
-                txRkwGraphicsChart' . $contentUid . '.render();
+                txRkwGraphsChart' . $contentUid . '.render();
             </script>
         ';
 
@@ -97,13 +97,13 @@ positiv|12.0|13.0|9.0|3.0|59.0
 
 
         // Add rendering call to footer after lib
-        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphicsElement' . $contentUid] = '
+        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
             <script type="text/javascript">
-                var txRkwGraphicsChart' . $contentUid . ' = new ApexCharts(
-                    document.querySelector("#txRkwGraphicsChart' . $contentUid . '"),
-                    txRkwGraphicsChartOptions' . $contentUid . '
+                var txRkwGraphsChart' . $contentUid . ' = new ApexCharts(
+                    document.querySelector("#txRkwGraphsChart' . $contentUid . '"),
+                    txRkwGraphsChartOptions' . $contentUid . '
                 );
-                txRkwGraphicsChart' . $contentUid . '.render();
+                txRkwGraphsChart' . $contentUid . '.render();
             </script>
         ';
 
