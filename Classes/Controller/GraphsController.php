@@ -28,26 +28,13 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function donutAction()
     {
 
-        $colours = GeneralUtility::trimExplode(',', addslashes('#74b929, #006349, #333333'), true);
-        $labels = GeneralUtility::trimExplode(',', addslashes("ja, teil's teils, nein"), true);
-        $data = GeneralUtility::trimExplode(',', addslashes('65,8,27'), true);
-        $contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
+        $contentUid = $this->getContentUid();
 
-        $colours = '#74b929|#006349|#333333';
-        $labels = 'ja| teil\'s teils| nein';
-        $series = '65|8|27';
+        $colours = $this->settings['colours'];
+        $labels = $this->settings['labels'];
+        $series = $this->settings['series'];
 
-        // Add rendering call to footer after lib
-        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
-            <script type="text/javascript">
-                var txRkwGraphsChart' . $contentUid . ' = new ApexCharts(
-                    document.querySelector("#txRkwGraphsChart' . $contentUid . '"),
-                    txRkwGraphsChartOptions' . $contentUid . '
-                );
-                txRkwGraphsChart' . $contentUid . '.render();
-            </script>
-        ';
-
+        $this->addRenderCallToFooter($contentUid);
 
         $this->view->assignMultiple(
             array(
@@ -74,23 +61,13 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function barsAction()
     {
 
-        $contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
+        $contentUid = $this->getContentUid();
 
         $colours = $this->settings['colours'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
 
-        // Add rendering call to footer after lib
-        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
-            <script type="text/javascript">
-                var txRkwGraphsChart' . $contentUid . ' = new ApexCharts(
-                    document.querySelector("#txRkwGraphsChart' . $contentUid . '"),
-                    txRkwGraphsChartOptions' . $contentUid . '
-                );
-                txRkwGraphsChart' . $contentUid . '.render();
-            </script>
-        ';
-
+        $this->addRenderCallToFooter($contentUid);
 
         $this->view->assignMultiple(
             array(
@@ -108,6 +85,30 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'percentage' => true,
             )
         );
+    }
+
+    /**
+     * @param $contentUid
+     */
+    private function addRenderCallToFooter($contentUid)
+    {
+        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
+            <script type="text/javascript">
+                var txRkwGraphsChart' . $contentUid . ' = new ApexCharts(
+                    document.querySelector("#txRkwGraphsChart' . $contentUid . '"),
+                    txRkwGraphsChartOptions' . $contentUid . '
+                );
+                txRkwGraphsChart' . $contentUid . '.render();
+            </script>
+        ';
+    }
+
+    /**
+     * @return int
+     */
+    private function getContentUid()
+    {
+        return intval($this->configurationManager->getContentObject()->data['uid']);
     }
 
 
