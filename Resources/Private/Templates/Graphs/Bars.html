@@ -23,8 +23,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <script type="{type}">
 
         //  @todo: Use a view helper or is it okay like that? Or could I use something like CDATA, etc.?
-        var stacked = {stacked};
-
+        var stacked = Boolean({stacked}),
+            horizontal = Boolean({horizontal});
 
         var txRkwGraphsChartOptions{contentUid} = {
             <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
@@ -37,7 +37,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
             },
             plotOptions: {
                 bar: {
-                    horizontal: false,
+                    horizontal: horizontal,
                 },
             },
             stroke: {

@@ -65,7 +65,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
-        $stacked = (bool) $this->settings['bars']['stacked'];
+
+        $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
+        $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
 
         $this->addRenderCallToFooter($contentUid);
 
@@ -78,6 +80,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
                 'series' => $series,
                 'stacked' => $stacked,
+                'horizontal' => $horizontal,
                 'captionLabel' => 'Abbildung 1',
                 'caption' => 'TESt beschreeibung am Fußende!',
                 'type' => 'text/javascript',

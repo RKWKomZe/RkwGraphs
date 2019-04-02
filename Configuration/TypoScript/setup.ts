@@ -23,6 +23,7 @@ plugin.tx_rkwgraphs {
     }
     bars {
       stacked = false
+      horizontal = false
     }
   }
 }

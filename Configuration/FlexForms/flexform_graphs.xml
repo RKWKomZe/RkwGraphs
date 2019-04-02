@@ -34,6 +34,14 @@
 							</config>
 						</TCEforms>
 					</settings.bars.stacked>
+					<settings.bars.horizontal>
+						<TCEforms>
+							<label>Horizontal</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.bars.horizontal>
 					<settings.colors>
 						<TCEforms>
 							<label>Colors</label>
