@@ -51,10 +51,18 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $items = GeneralUtility::trimExplode($delimiter, $line, true);
             if (count($items) > 1) {
 
-                $label = array_shift($items);
-                $values = implode(',', $items);
+                //  @todo: We should try to avoid an obligatory label in series field!?
+                if (! is_numeric($items[0])) {
+                    $label = array_shift($items);
+                    $values = implode(',', $items);
 
-                $series[] = '{ name: \'' . $label . '\', data: [' . $values . '] },';
+                    $series[] = '{ name: \'' . $label . '\', data: [' . $values . '] },';
+                } else {
+                    $values = implode(',', $items);
+
+                    $series[] = '{ data: [' . $values . '] },';
+
+                }
             }
         }
 
