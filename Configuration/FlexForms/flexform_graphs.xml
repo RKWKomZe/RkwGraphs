@@ -26,6 +26,14 @@
 
 						</TCEforms>
 					</switchableControllerActions>
+					<settings.bars.stacked>
+						<TCEforms>
+							<label>Stacked</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.bars.stacked>
 					<settings.colors>
 						<TCEforms>
 							<label>Colors</label>

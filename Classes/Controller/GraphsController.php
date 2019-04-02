@@ -45,8 +45,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'series' => $series,
                 'captionLabel' => 'Abbildung 1',
                 'caption' => 'TESt beschreeibung am Fußende!',
-                'type' => 'text/javascript'
-
+                'type' => 'text/javascript',
             )
         );
 
@@ -66,6 +65,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
+        $stacked = (bool) $this->settings['bars']['stacked'];
 
         $this->addRenderCallToFooter($contentUid);
 
@@ -77,10 +77,10 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'labels' => $labels,
 
                 'series' => $series,
+                'stacked' => $stacked,
                 'captionLabel' => 'Abbildung 1',
                 'caption' => 'TESt beschreeibung am Fußende!',
                 'type' => 'text/javascript',
-                'stacked' => false,
                 'stackedPercent' => true,
                 'percentage' => true,
             )
