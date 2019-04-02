@@ -26,16 +26,16 @@
 
 						</TCEforms>
 					</switchableControllerActions>
-					<settings.colours>
+					<settings.colors>
 						<TCEforms>
-							<label>Colours</label>
+							<label>Colors</label>
 							<config>
 								<type>input</type>
 								<size>20</size>
 								<eval>trim</eval>
 							</config>
 						</TCEforms>
-					</settings.colours>
+					</settings.colors>
 					<settings.labels>
 						<TCEforms>
 							<label>Labels</label>

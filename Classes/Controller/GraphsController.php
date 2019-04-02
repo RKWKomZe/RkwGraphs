@@ -30,7 +30,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        $colours = $this->settings['colours'];
+        $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
 
@@ -40,7 +40,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             array(
                 'contentUid' => $contentUid,
                 'title' => 'test Graph',
-                'colours' => $colours,
+                'colors' => $colors,
                 'labels' => $labels,
                 'series' => $series,
                 'captionLabel' => 'Abbildung 1',
@@ -63,7 +63,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        $colours = $this->settings['colours'];
+        $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
 
@@ -73,7 +73,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             array(
                 'contentUid' => $contentUid,
                 'title' => 'test Graph',
-                'colours' => $colours,
+                'colors' => $colors,
                 'labels' => $labels,
 
                 'series' => $series,
