@@ -19,22 +19,29 @@
             </trans-unit>
             <trans-unit id="flexform.graphs.selectType">
                 <source>Select type</source>
+                <target>Bitte Diagramtyp wählen</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.bars.stacked">
                 <source>Stacked presentation</source>
+                <target>Stapeldarstellung</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.bars.horizontal">
                 <source>Horizontal presentation</source>
+                <target>Horizontale Darstellung</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.colors">
                 <source>Colors</source>
+                <target>Farben</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.labels">
                 <source>Labels</source>
+                <target>Beschriftungen</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.series">
                 <source>Values</source>
+                <target>Werte</target>
             </trans-unit>
+
 		</body>
 	</file>
 </xliff>

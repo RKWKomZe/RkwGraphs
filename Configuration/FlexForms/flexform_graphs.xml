@@ -3,13 +3,13 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>Function</sheetTitle>
+					<sheetTitle>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.sheetTitle</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<switchableControllerActions>
 						<TCEforms>
-							<label>Select function</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.selectType</label>
 							<config>
 								<type>select</type>
 								<items>
@@ -28,7 +28,7 @@
 					</switchableControllerActions>
 					<settings.bars.stacked>
 						<TCEforms>
-							<label>Stacked</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.stacked</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -36,7 +36,7 @@
 					</settings.bars.stacked>
 					<settings.bars.horizontal>
 						<TCEforms>
-							<label>Horizontal</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.horizontal</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -44,7 +44,7 @@
 					</settings.bars.horizontal>
 					<settings.colors>
 						<TCEforms>
-							<label>Colors</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.colors</label>
 							<config>
 								<type>input</type>
 								<size>20</size>
@@ -54,7 +54,7 @@
 					</settings.colors>
 					<settings.labels>
 						<TCEforms>
-							<label>Labels</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.labels</label>
 							<config>
 								<type>input</type>
 								<size>20</size>
@@ -64,7 +64,7 @@
 					</settings.labels>
 					<settings.series>
 						<TCEforms>
-							<label>Series</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.series</label>
 							<config>
 								<type>text</type>
 							</config>

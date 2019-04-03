@@ -7,7 +7,7 @@
 				<source>Graphics</source>
 			</trans-unit>
 			<trans-unit id="tx_rkw_graphics_domain_model_graphics.description">
-				<source></source>
+				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_rkwgraphics_domain_model_graphics">
 				<source>Graphics</source>
