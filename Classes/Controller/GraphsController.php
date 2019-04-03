@@ -30,21 +30,23 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        $colors = $this->settings['colors'];
-        $labels = $this->settings['labels'];
-        $series = $this->settings['series'];
+        list($colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
 
         $this->addRenderCallToFooter($contentUid);
 
         $this->view->assignMultiple(
             array(
                 'contentUid' => $contentUid,
+
                 'title' => 'test Graph',
+
                 'colors' => $colors,
                 'labels' => $labels,
                 'series' => $series,
-                'captionLabel' => 'Abbildung 1',
-                'caption' => 'TESt beschreeibung am Fußende!',
+
+                'captionLabel' => $captionLabel,
+                'caption' => $caption,
+
                 'type' => 'text/javascript',
             )
         );
@@ -62,9 +64,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        $colors = $this->settings['colors'];
-        $labels = $this->settings['labels'];
-        $series = $this->settings['series'];
+        list($colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
 
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
@@ -74,18 +74,22 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->view->assignMultiple(
             array(
                 'contentUid' => $contentUid,
+
                 'title' => 'test Graph',
+
                 'colors' => $colors,
                 'labels' => $labels,
-
                 'series' => $series,
-                'stacked' => $stacked,
+
                 'horizontal' => $horizontal,
-                'captionLabel' => 'Abbildung 1',
-                'caption' => 'TESt beschreeibung am Fußende!',
-                'type' => 'text/javascript',
+                'stacked' => $stacked,
                 'stackedPercent' => true,
                 'percentage' => true,
+
+                'captionLabel' => $captionLabel,
+                'caption' => $caption,
+
+                'type' => 'text/javascript',
             )
         );
     }
@@ -112,6 +116,21 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     private function getContentUid()
     {
         return intval($this->configurationManager->getContentObject()->data['uid']);
+    }
+
+    /**
+     * @return array
+     */
+    private function setOptions()
+    {
+        $colors = $this->settings['colors'];
+        $labels = $this->settings['labels'];
+        $series = $this->settings['series'];
+
+        $captionLabel = $this->settings['caption']['label'];
+        $caption = $this->settings['caption']['text'];
+
+        return array($colors, $labels, $series, $captionLabel, $caption);
     }
 
 

@@ -41,6 +41,14 @@
                 <source>Values</source>
                 <target>Werte</target>
             </trans-unit>
+            <trans-unit id="flexform.graphs.caption.label">
+                <source>Caption label</source>
+                <target>Bildunterschrift (Label)</target>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.caption.text">
+                <source>Caption</source>
+                <target>Bildunterschrift (Text)</target>
+            </trans-unit>
 
 		</body>
 	</file>

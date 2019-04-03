@@ -22,6 +22,10 @@ plugin.tx_rkwgraphs {
     colors = {$plugin.tx_rkwgraphs.settings.colors}
     labels = {$plugin.tx_rkwgraphs.settings.labels}
     series = {$plugin.tx_rkwgraphs.settings.series}
+    caption {
+      label = {$plugin.tx_rkwgraphs.settings.caption.label}
+      text = {$plugin.tx_rkwgraphs.settings.caption.text}
+    }
     donut = {$plugin.tx_rkwgraphs.settings.donut}
     bars {
       stacked = {$plugin.tx_rkwgraphs.settings.bars.stacked}

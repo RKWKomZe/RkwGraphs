@@ -16,6 +16,10 @@ plugin.tx_rkwgraphs {
     colors = #000000
     labels = gut|mittel|schlecht
     series = 10|15|20
+    caption {
+      label = Bildunterschrift (Label)
+      text = Bildunterschrift (Text)
+    }
     bars {
       stacked = false
       horizontal = false
