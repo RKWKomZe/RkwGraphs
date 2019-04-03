@@ -62,9 +62,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        $colors = $this->settings['colors'];
-        $labels = $this->settings['labels'];
-        $series = $this->settings['series'];
+        $colors = $this->settings['bars']['colors'];
+        $labels = $this->settings['bars']['labels'];
+        $series = $this->settings['bars']['series'];
 
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);

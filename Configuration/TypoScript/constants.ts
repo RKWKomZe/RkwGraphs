@@ -12,4 +12,15 @@ plugin.tx_rkwgraphs {
     # cat=plugin.tx_rkwgraphs//a; type=string; label=Default storage PID
     storagePid =
   }
+  settings {
+    bars {
+      colors = #000000
+      labels = gut|mittel|schlecht
+      series = 10|15|20
+      stacked = false
+      horizontal = false
+    }
+    donut {
+    }
+  }
 }

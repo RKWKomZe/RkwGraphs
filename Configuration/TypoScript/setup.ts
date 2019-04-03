@@ -19,22 +19,21 @@ plugin.tx_rkwgraphs {
     #callDefaultActionIfActionCantBeResolved = 1
   }
   settings {
-    donut {
-    }
+    donut = {$plugin.tx_rkwgraphs.settings.donut}
     bars {
-      colors = '#000000'
-      labels = 'gut|mittel|schlecht'
-      series = '10|15|20'
-      stacked = false
-      horizontal = false
+      colors = {$plugin.tx_rkwgraphs.settings.bars.colors}
+      labels = {$plugin.tx_rkwgraphs.settings.bars.labels}
+      series = {$plugin.tx_rkwgraphs.settings.bars.series}
+      stacked = {$plugin.tx_rkwgraphs.settings.bars.stacked}
+      horizontal = {$plugin.tx_rkwgraphs.settings.bars.horizontal}
     }
   }
 }
 
 
 // include JS
-page.includeJSFooterlibs.txRkwGraphsApexCharts  = EXT:rkw_graphs/Resources/Public/Js/ApexCharts-v3.2.2.min.js
-page.includeCSS.txRkwGraphsCharts  = EXT:rkw_graphs/Resources/Public/Css/Charts.css
+page.includeJSFooterlibs.txRkwGraphsApexCharts = EXT:rkw_graphs/Resources/Public/Js/ApexCharts-v3.2.2.min.js
+page.includeCSS.txRkwGraphsCharts = EXT:rkw_graphs/Resources/Public/Css/Charts.css
 
 
 plugin.tx_rkwgraphs._CSS_DEFAULT_STYLE (
