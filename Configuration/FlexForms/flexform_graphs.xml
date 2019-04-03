@@ -21,9 +21,12 @@
 										<numIndex index="0">Bars</numIndex>
 										<numIndex index="1">Graphs->bars</numIndex>
 									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">Candlestick</numIndex>
+										<numIndex index="1">Graphs->candlesticks</numIndex>
+									</numIndex>
 								</items>
 							</config>
-
 						</TCEforms>
 					</switchableControllerActions>
 					<settings.bars.stacked>

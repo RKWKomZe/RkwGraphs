@@ -23,7 +23,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <script type="{type}">
 
         var txRkwGraphsChart = {
-            series: <rkwGraphs:bars.series data="{series}" />,
+            series: <rkwGraphs:candlesticks.series data="{series}" />,
             colors: <rkwGraphs:jsarray data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
@@ -44,7 +44,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
             series: txRkwGraphsChart.series,
             colors: txRkwGraphsChart.colors,
             dataLabels: {
-                enabled:true,
+                enabled:false,
                 style: {
                     fontSize: '16px',
                     fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
@@ -85,47 +85,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
                 },
             },
-            xaxis: {
-                <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                categories: <rkwGraphs:jsArray data="{labels}" />,
-                labels: {
-                    trim : false,
-                    rotate: -45,
-                    minHeight: txRkwGraphsChart.xAxisMinHeight,
-                    rotateAlways: true,
-                    formatter: function(val) {
-                        var strArray = val.toString().split('#');
-                        if (typeof strArray[0] !== 'undefined') {
-                            return strArray[0]
-                        }
-                        return val
-                    },
-                    style: {
-                        fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
-                    },
-                 },
-
-            },
-            yaxis: {
-                forceNiceScale : true,
-                labels: {
-                    trim : false,
-                    minWidth: txRkwGraphsChart.yAxisMinWidth,
-                    formatter: function(val) {
-                        if (isNaN(val)) {
-                            var strArray = val.toString().split('#');
-                            if (typeof strArray[0] !== 'undefined') {
-                                return strArray[0]
-                            }
-                            return val
-                        }
-                        return Math.abs(Math.round(val)) + '%'
-                    },
-                    style: {
-                        fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
-                    },
-                },
-            },
+              yaxis: {
+        tooltip: {
+          enabled: true
+        }
+      },
             responsive: [
                 {
                     breakpoint: 1488,

@@ -95,6 +95,38 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
+     * action candlesticks
+     *
+     * @return void
+     */
+    public function candlesticksAction()
+    {
+
+        $contentUid = $this->getContentUid();
+
+        list($colors, $labels, $series, $captionLabel, $caption) = $this->setOptions('candlesticks');
+
+        $this->addRenderCallToFooter($contentUid);
+
+        $this->view->assignMultiple(
+            array(
+                'contentUid' => $contentUid,
+
+                'title' => 'test Graph',
+
+                'colors' => $colors,
+                'labels' => $labels,
+                'series' => $series,
+
+                'captionLabel' => $captionLabel,
+                'caption' => $caption,
+
+                'type' => 'text/javascript',
+            )
+        );
+    }
+
+    /**
      * @param $contentUid
      */
     private function addRenderCallToFooter($contentUid)
@@ -121,11 +153,15 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     /**
      * @return array
      */
-    private function setOptions()
+    private function setOptions($type = null)
     {
         $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
+
+        if ($type === 'candlesticks') {
+            $series = (trim($this->settings['series']) !== '') ? $this->settings['series'] : $this->settings['candlesticks']['series']['value'];
+        }
 
         $captionLabel = $this->settings['caption']['label'];
         $caption = $this->settings['caption']['text'];
