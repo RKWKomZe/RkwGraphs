@@ -20,8 +20,18 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <!-- Build JS -->
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
+
+        var txRkwGraphsChart = {
+            labels: <rkwGraphs:jsArray data="{labels}" />,
+            series: <rkwGraphs:jsArray data="{series}" checkFloat="true" />,
+            colors: <rkwGraphs:jsArray data="{colors}" />,
+            yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
+            xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
+            stacked: Boolean({stacked}),
+            horizontal: Boolean({horizontal})
+        }
+
         var txRkwGraphsChartOptions{contentUid} = {
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
             chart: {
                 width: 600,
                 height: 500,
@@ -34,13 +44,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     }
                 }
             },
-            labels: <rkwGraphs:jsArray data="{labels}" />,
-            series: <rkwGraphs:jsArray data="{series}" checkFloat="true" />,
+            labels: txRkwGraphsChart.labels,
+            series: txRkwGraphsChart.series,
             fill: {
-                <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                colors: <rkwGraphs:jsArray data="{colors}" />,
+                colors: txRkwGraphsChart.colors,
             },
-            colors: <rkwGraphs:jsArray data="{colors}" />,
+            colors: txRkwGraphsChart.colors,
             dataLabels: {
                 enabled: true,
                 style: {
