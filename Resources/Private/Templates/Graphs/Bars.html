@@ -22,7 +22,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
 
-        var chart = {
+        var txRkwGraphsChart = {
             series: <rkwGraphs:bars.series data="{series}" />,
             colors: <rkwGraphs:jsarray data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
@@ -34,22 +34,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
         var txRkwGraphsChartOptions{contentUid} = {
             chart: {
                 width: 900,
-                height: 600,
+                height: 600,    //  @todo: Set height to set bar heights on horizontal bar graphs
                 type: 'bar',
-                stacked: chart.stacked,
+                stacked: txRkwGraphsChart.stacked,
                 //  stackType: '100%',
             },
             plotOptions: {
                 bar: {
-                    horizontal: chart.horizontal,
+                    horizontal: txRkwGraphsChart.horizontal,
                 },
             },
             stroke: {
                 width: 1,
                 colors: ["#fff"],
             },
-            series: chart.series,
-            colors: chart.colors,
+            series: txRkwGraphsChart.series,
+            colors: txRkwGraphsChart.colors,
             dataLabels: {
                 enabled:true,
                 style: {
@@ -98,7 +98,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 labels: {
                     trim : false,
                     rotate: -45,
-                    minHeight: chart.xAxisMinHeight,
+                    minHeight: txRkwGraphsChart.xAxisMinHeight,
                     rotateAlways: true,
                     formatter: function(val) {
                         var strArray = val.toString().split('#');
@@ -117,7 +117,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 forceNiceScale : true,
                 labels: {
                     trim : false,
-                    minWidth: chart.yAxisMinWidth,
+                    minWidth: txRkwGraphsChart.yAxisMinWidth,
                     formatter: function(val) {
                         if (isNaN(val)) {
                             var strArray = val.toString().split('#');
