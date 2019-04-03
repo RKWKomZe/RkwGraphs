@@ -19,11 +19,11 @@ plugin.tx_rkwgraphs {
     #callDefaultActionIfActionCantBeResolved = 1
   }
   settings {
+    colors = {$plugin.tx_rkwgraphs.settings.colors}
+    labels = {$plugin.tx_rkwgraphs.settings.labels}
+    series = {$plugin.tx_rkwgraphs.settings.series}
     donut = {$plugin.tx_rkwgraphs.settings.donut}
     bars {
-      colors = {$plugin.tx_rkwgraphs.settings.bars.colors}
-      labels = {$plugin.tx_rkwgraphs.settings.bars.labels}
-      series = {$plugin.tx_rkwgraphs.settings.bars.series}
       stacked = {$plugin.tx_rkwgraphs.settings.bars.stacked}
       horizontal = {$plugin.tx_rkwgraphs.settings.bars.horizontal}
     }

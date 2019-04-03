@@ -13,10 +13,10 @@ plugin.tx_rkwgraphs {
     storagePid =
   }
   settings {
+    colors = #000000
+    labels = gut|mittel|schlecht
+    series = 10|15|20
     bars {
-      colors = #000000
-      labels = gut|mittel|schlecht
-      series = 10|15|20
       stacked = false
       horizontal = false
     }
