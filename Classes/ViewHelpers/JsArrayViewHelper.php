@@ -39,27 +39,22 @@ class JsArrayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
     public function render($data, $delimiter = '|', $checkFloat = false)
     {
 
-        $finalStrings = [];
+        $parsedData = [];
         $strings = GeneralUtility::trimExplode($delimiter, $data, true);
         foreach ($strings as $string) {
             if ($checkFloat) {
-                $finalStrings[] = floatval(str_replace(',', '.', $string));
+                $parsedData[] = floatval(str_replace(',', '.', $string));
             } else {
-                $finalStrings[] = addslashes($string);
+                $parsedData[] = addslashes($string);
             }
         }
 
-        if (count($finalStrings) < 1) {
-            return '[]';
+        if (count($parsedData) < 1) {
+            $parsedData = [];
             //===
         }
 
-        if ($checkFloat) {
-            return '[' . implode(',', $finalStrings) . ']';
-            //===
-        }
-
-        return '[\'' . implode('\',\'', $finalStrings) . '\']';
+        return json_encode($parsedData, JSON_NUMERIC_CHECK);
         //===
     }
 
