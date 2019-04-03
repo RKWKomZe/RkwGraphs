@@ -29,6 +29,7 @@
 					<settings.bars.stacked>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.stacked</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
 							<config>
 								<type>check</type>
 							</config>
@@ -37,6 +38,7 @@
 					<settings.bars.horizontal>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.horizontal</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
 							<config>
 								<type>check</type>
 							</config>
