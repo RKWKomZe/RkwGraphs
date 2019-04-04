@@ -17,7 +17,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
     <f:render partial="Chart" arguments="{_all}" />
 
-
     <!-- Build JS -->
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
@@ -26,13 +25,16 @@ Otherwise your changes will be overwritten the next time you save the extension 
             title: <rkwGraphs:jsString data="{title}" />,
             xaxisLabel: <rkwGraphs:jsString data="{xaxisLabel}" />,
             yaxisLabel: <rkwGraphs:jsString data="{yaxisLabel}" />,
+            yaxis2Show: Boolean({yaxis2Show}),
+            yaxis2Label: <rkwGraphs:jsString data="{yaxis2Label}" />,
             labels: <rkwGraphs:jsArray data="{labels}" />,
             series: <rkwGraphs:bars.series data="{series}" />,
             colors: <rkwGraphs:jsarray data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             stacked: Boolean({stacked}),
-            horizontal: Boolean({horizontal})
+            horizontal: Boolean({horizontal}),
+            legendShow: Boolean({legendShow}),
         }
 
         var txRkwGraphsChartOptions{contentUid} = {
@@ -42,11 +44,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 type: 'bar',
                 stacked: txRkwGraphsChart.stacked,
                 //  stackType: '100%',
-                events: {
-                    beforeMount: function (chartContext, config) {
-                      console.log(config);
-                    }
-                }
             },
             plotOptions: {
                 bar: {
@@ -69,7 +66,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 },
             },
             legend: {
-                show: true,
+                show: txRkwGraphsChart.legendShow,
                 fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
                 position: 'top',
             },
@@ -116,9 +113,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
                  },
 
             },
-            yaxis: {
+            yaxis: [{
                 title: {
                     text: txRkwGraphsChart.yaxisLabel,
+                    style: {
+                        color: ''
+                    }
                 },
                 forceNiceScale : true,
                 labels: {
@@ -137,8 +137,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     style: {
                         fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
                     },
-                },
-            },
+                }
+            }],
             responsive: [
                 {
                     breakpoint: 1488,
@@ -180,6 +180,34 @@ Otherwise your changes will be overwritten the next time you save the extension 
             ]
 
         };
+
+        //  update options, if necessary
+        if (txRkwGraphsChart.yaxis2Show) {
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+
+            var ycolor = txRkwGraphsChart.colors[0];
+            var y2color = txRkwGraphsChart.colors[1];
+
+            txRkwGraphsChartOptions{contentUid}.yaxis[0].title.style.color = ycolor;
+            txRkwGraphsChartOptions{contentUid}.yaxis[0].labels.style.color = ycolor;
+
+            var yaxis2 = {
+                opposite: true,
+                labels: {
+                    style: {
+                        color: y2color
+                    }
+                },
+                title: {
+                  text: txRkwGraphsChart.yaxis2Label,
+                  style: {
+                    color: y2color
+                  }
+                },
+            }
+
+            txRkwGraphsChartOptions{contentUid}.yaxis.push(yaxis2);
+        }
 
     </script>
 </f:section>

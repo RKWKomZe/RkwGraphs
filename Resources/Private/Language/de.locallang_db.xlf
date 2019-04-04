@@ -19,7 +19,7 @@
             </trans-unit>
             <trans-unit id="flexform.graphs.selectType">
                 <source>Select type</source>
-                <target>Bitte Diagramtyp wählen</target>
+                <target>Bitte Diagrammtyp wählen</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.title">
                 <source>Title</source>
@@ -33,6 +33,10 @@
                 <source>Label yAxis</source>
                 <target>Beschriftung y-Achse</target>
             </trans-unit>
+            <trans-unit id="flexform.graphs.bars.yaxis2.label">
+                <source>Label yAxis2</source>
+                <target>Beschriftung 2. y-Achse</target>
+            </trans-unit>
             <trans-unit id="flexform.graphs.bars.stacked">
                 <source>Stacked presentation</source>
                 <target>Stapeldarstellung</target>
@@ -40,6 +44,10 @@
             <trans-unit id="flexform.graphs.bars.horizontal">
                 <source>Horizontal presentation</source>
                 <target>Horizontale Darstellung</target>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.bars.yaxis2.show">
+                <source>Second yAxis</source>
+                <target>2. y-Achse einblenden</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.colors">
                 <source>Colors</source>
@@ -61,7 +69,10 @@
                 <source>Caption</source>
                 <target>Bildunterschrift (Text)</target>
             </trans-unit>
-
+            <trans-unit id="flexform.graphs.legend.show">
+                <source>Show legend</source>
+                <target>Legende anzeigen</target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

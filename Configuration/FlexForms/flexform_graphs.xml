@@ -40,6 +40,34 @@
 							</config>
 						</TCEforms>
 					</settings.title>
+					<settings.bars.stacked>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.stacked</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.bars.stacked>
+					<settings.bars.horizontal>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.horizontal</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.bars.horizontal>
+					<settings.bars.yaxis2.show>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.yaxis2.show</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<onChange>reload</onChange>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.bars.yaxis2.show>
 					<settings.xaxis.label>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.xaxis.label</label>
@@ -72,24 +100,25 @@
 							</config>
 						</TCEforms>
 					</settings.yaxis.label>
-					<settings.bars.stacked>
+					<settings.bars.yaxis2.label>
 						<TCEforms>
-							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.stacked</label>
-							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.yaxis2.label</label>
+							<displayCond>
+								<OR>
+									<numIndex index="0">FIELD:switchableControllerActions:=:Graphs->bars</numIndex>
+									<numIndex index="1">FIELD:switchableControllerActions:=:Graphs->candlesticks</numIndex>
+									<AND>
+										<numIndex>FIELD:settings.bars.yaxis2.show:=:1</numIndex>
+									</AND>
+								</OR>
+							</displayCond>
 							<config>
-								<type>check</type>
+								<type>input</type>
+								<size>20</size>
+								<eval>trim</eval>
 							</config>
 						</TCEforms>
-					</settings.bars.stacked>
-					<settings.bars.horizontal>
-						<TCEforms>
-							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.horizontal</label>
-							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.bars.horizontal>
+					</settings.bars.yaxis2.label>
 					<settings.colors>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.colors</label>
@@ -134,6 +163,15 @@
 							</config>
 						</TCEforms>
 					</settings.caption.text>
+					<settings.legend.show>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.legend.show</label>
+							<config>
+								<type>check</type>
+								<default>1</default>
+							</config>
+						</TCEforms>
+					</settings.legend.show>
 				</el>
 			</ROOT>
 		</sDEF>

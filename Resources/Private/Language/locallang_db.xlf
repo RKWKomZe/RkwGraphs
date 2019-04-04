@@ -29,11 +29,17 @@
             <trans-unit id="flexform.graphs.yaxis.label">
                 <source>Label yAxis</source>
             </trans-unit>
+            <trans-unit id="flexform.graphs.bars.yaxis2.label">
+                <source>Label yAxis2</source>
+            </trans-unit>
             <trans-unit id="flexform.graphs.bars.stacked">
                 <source>Stacked presentation</source>
             </trans-unit>
             <trans-unit id="flexform.graphs.bars.horizontal">
                 <source>Horizontal presentation</source>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.bars.yaxis2.show">
+                <source>Second yAxis</source>
             </trans-unit>
             <trans-unit id="flexform.graphs.colors">
                 <source>Colors</source>
@@ -49,6 +55,9 @@
             </trans-unit>
             <trans-unit id="flexform.graphs.caption.text">
                 <source>Caption</source>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.legend.show">
+                <source>Show legend</source>
             </trans-unit>
 		</body>
 	</file>

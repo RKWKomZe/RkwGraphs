@@ -30,28 +30,16 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        list($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
+        $options = $this->setOptions();
 
         $this->addRenderCallToFooter($contentUid);
 
-        $this->view->assignMultiple(
-            array(
-                'contentUid' => $contentUid,
+        $options = array_merge($options, [
+            'contentUid' => $contentUid,
+            'type' => 'text/javascript',
+        ]);
 
-                'title' => $title,
-
-                'colors' => $colors,
-                'labels' => $labels,
-                'series' => $series,
-
-                'captionLabel' => $captionLabel,
-                'caption' => $caption,
-
-                'type' => 'text/javascript',
-            )
-        );
-
-
+        $this->view->assignMultiple($options);
     }
 
     /**
@@ -64,36 +52,23 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        list($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
+        $options = $this->setOptions();
 
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
 
         $this->addRenderCallToFooter($contentUid);
 
-        $this->view->assignMultiple(
-            array(
-                'contentUid' => $contentUid,
+        $options = array_merge($options, [
+            'contentUid' => $contentUid,
+            'horizontal' => $horizontal,
+            'stacked' => $stacked,
+            'stackedPercent' => true,
+            'percentage' => true,
+            'type' => 'text/javascript',
+        ]);
 
-                'title' => $title,
-                'xaxisLabel' => $xaxisLabel,
-                'yaxisLabel' => $yaxisLabel,
-
-                'colors' => $colors,
-                'labels' => $labels,
-                'series' => $series,
-
-                'horizontal' => $horizontal,
-                'stacked' => $stacked,
-                'stackedPercent' => true,
-                'percentage' => true,
-
-                'captionLabel' => $captionLabel,
-                'caption' => $caption,
-
-                'type' => 'text/javascript',
-            )
-        );
+        $this->view->assignMultiple($options);
     }
 
     /**
@@ -105,28 +80,16 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $contentUid = $this->getContentUid();
 
-        list($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption) = $this->setOptions('candlesticks');
+        $options = $this->setOptions('candlesticks');
 
         $this->addRenderCallToFooter($contentUid);
 
-        $this->view->assignMultiple(
-            array(
-                'contentUid' => $contentUid,
+        $options = array_merge($options, [
+            'contentUid' => $contentUid,
+            'type' => 'text/javascript',
+        ]);
 
-                'title' => $title,
-                'xaxisLabel' => $xaxisLabel,
-                'yaxisLabel' => $yaxisLabel,
-
-                'colors' => $colors,
-                'labels' => $labels,
-                'series' => $series,
-
-                'captionLabel' => $captionLabel,
-                'caption' => $caption,
-
-                'type' => 'text/javascript',
-            )
-        );
+        $this->view->assignMultiple($options);
     }
 
     /**
@@ -167,6 +130,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $xaxisLabel = $this->settings['xaxis']['label'];
         $yaxisLabel = $this->settings['yaxis']['label'];
 
+        $yaxis2Show = $this->settings['bars']['yaxis2']['show'];
+        $yaxis2Label = $this->settings['bars']['yaxis2']['label'];
+
         if ($type === 'candlesticks') {
             $series = (trim($this->settings['series']) !== '') ? $this->settings['series'] : $this->settings['candlesticks']['series']['value'];
         }
@@ -174,7 +140,21 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $captionLabel = $this->settings['caption']['label'];
         $caption = $this->settings['caption']['text'];
 
-        return array($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption);
+        $legendShow = filter_var($this->settings['legend']['show'], FILTER_VALIDATE_BOOLEAN);
+
+        return compact(
+            'title',
+            'xaxisLabel',
+            'yaxisLabel',
+            'yaxis2Show',
+            'yaxis2Label',
+            'colors',
+            'labels',
+            'series',
+            'captionLabel',
+            'caption',
+            'legendShow'
+        );
     }
 
 

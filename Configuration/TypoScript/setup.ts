@@ -35,9 +35,14 @@ plugin.tx_rkwgraphs {
     }
     donut = {$plugin.tx_rkwgraphs.settings.donut}
     bars {
+      yaxis2 {
+        show = {$plugin.tx_rkwgraphs.settings.bars.yaxis2.show}
+        label = {$plugin.tx_rkwgraphs.settings.bars.yaxis2.label}
+      }
       stacked = {$plugin.tx_rkwgraphs.settings.bars.stacked}
       horizontal = {$plugin.tx_rkwgraphs.settings.bars.horizontal}
     }
+    # @todo: Kann dieser Wert so auch in der constants.ts übergeben werden?
     candlesticks {
       series = TEXT
       series.value (
@@ -53,6 +58,9 @@ plugin.tx_rkwgraphs {
 			10|6604.5|6614.4|6602.26|6608.02
       )
       # series = {$plugin.tx_rkwgraphs.settings.candlesticks.series}
+    }
+    legend {
+      show = {$plugin.tx_rkwgraphs.settings.legend.show}
     }
   }
 }

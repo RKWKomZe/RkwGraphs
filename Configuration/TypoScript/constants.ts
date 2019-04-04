@@ -28,10 +28,17 @@ plugin.tx_rkwgraphs {
       text = Bildunterschrift (Text)
     }
     bars {
+      yaxis2 {
+        show = false
+        label = Überschrift 2. y-Achse
+      }
       stacked = false
       horizontal = false
     }
     donut {
+    }
+    legend {
+      show = true
     }
   }
 }
