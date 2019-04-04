@@ -10,6 +10,7 @@
 					<switchableControllerActions>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.selectType</label>
+							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
 								<items>
@@ -29,6 +30,48 @@
 							</config>
 						</TCEforms>
 					</switchableControllerActions>
+					<settings.title>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.title</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.title>
+					<settings.xaxis.label>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.xaxis.label</label>
+							<displayCond>
+								<OR>
+									<numIndex index="0">FIELD:switchableControllerActions:=:Graphs->bars</numIndex>
+									<numIndex index="1">FIELD:switchableControllerActions:=:Graphs->candlesticks</numIndex>
+								</OR>
+							</displayCond>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.xaxis.label>
+					<settings.yaxis.label>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.yaxis.label</label>
+							<displayCond>
+								<OR>
+									<numIndex index="0">FIELD:switchableControllerActions:=:Graphs->bars</numIndex>
+									<numIndex index="1">FIELD:switchableControllerActions:=:Graphs->candlesticks</numIndex>
+								</OR>
+							</displayCond>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.yaxis.label>
 					<settings.bars.stacked>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.stacked</label>

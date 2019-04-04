@@ -20,6 +20,15 @@
             <trans-unit id="flexform.graphs.selectType">
                 <source>Select type</source>
             </trans-unit>
+            <trans-unit id="flexform.graphs.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.xaxis.label">
+                <source>Label xAxis</source>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.yaxis.label">
+                <source>Label yAxis</source>
+            </trans-unit>
             <trans-unit id="flexform.graphs.bars.stacked">
                 <source>Stacked presentation</source>
             </trans-unit>

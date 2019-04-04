@@ -13,6 +13,13 @@ plugin.tx_rkwgraphs {
     storagePid =
   }
   settings {
+    title = Titel
+    xaxis {
+      label = Überschrift x-Achse
+    }
+    yaxis {
+      label = Überschrift y-Achse
+    }
     colors = #000000
     labels = gut|mittel|schlecht
     series = 10|15|20

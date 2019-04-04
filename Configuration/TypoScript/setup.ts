@@ -19,6 +19,13 @@ plugin.tx_rkwgraphs {
     #callDefaultActionIfActionCantBeResolved = 1
   }
   settings {
+    title = {$plugin.tx_rkwgraphs.settings.title}
+    xaxis {
+      label = {$plugin.tx_rkwgraphs.settings.xaxis.label}
+    }
+    yaxis {
+      label ={$plugin.tx_rkwgraphs.settings.yaxis.label}
+    }
     colors = {$plugin.tx_rkwgraphs.settings.colors}
     labels = {$plugin.tx_rkwgraphs.settings.labels}
     series = {$plugin.tx_rkwgraphs.settings.series}

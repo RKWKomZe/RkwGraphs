@@ -21,6 +21,18 @@
                 <source>Select type</source>
                 <target>Bitte Diagramtyp wählen</target>
             </trans-unit>
+            <trans-unit id="flexform.graphs.title">
+                <source>Title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.xaxis.label">
+                <source>Label xAxis</source>
+                <target>Beschriftung x-Achse</target>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.yaxis.label">
+                <source>Label yAxis</source>
+                <target>Beschriftung y-Achse</target>
+            </trans-unit>
             <trans-unit id="flexform.graphs.bars.stacked">
                 <source>Stacked presentation</source>
                 <target>Stapeldarstellung</target>

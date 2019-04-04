@@ -30,7 +30,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        list($colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
+        list($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
 
         $this->addRenderCallToFooter($contentUid);
 
@@ -38,7 +38,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             array(
                 'contentUid' => $contentUid,
 
-                'title' => 'test Graph',
+                'title' => $title,
 
                 'colors' => $colors,
                 'labels' => $labels,
@@ -64,7 +64,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $contentUid = $this->getContentUid();
 
-        list($colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
+        list($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption) = $this->setOptions();
 
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
@@ -75,7 +75,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             array(
                 'contentUid' => $contentUid,
 
-                'title' => 'test Graph',
+                'title' => $title,
+                'xaxisLabel' => $xaxisLabel,
+                'yaxisLabel' => $yaxisLabel,
 
                 'colors' => $colors,
                 'labels' => $labels,
@@ -101,10 +103,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function candlesticksAction()
     {
-
         $contentUid = $this->getContentUid();
 
-        list($colors, $labels, $series, $captionLabel, $caption) = $this->setOptions('candlesticks');
+        list($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption) = $this->setOptions('candlesticks');
 
         $this->addRenderCallToFooter($contentUid);
 
@@ -112,7 +113,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             array(
                 'contentUid' => $contentUid,
 
-                'title' => 'test Graph',
+                'title' => $title,
+                'xaxisLabel' => $xaxisLabel,
+                'yaxisLabel' => $yaxisLabel,
 
                 'colors' => $colors,
                 'labels' => $labels,
@@ -155,9 +158,14 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     private function setOptions($type = null)
     {
+        $title = $this->settings['title'];
+
         $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
+
+        $xaxisLabel = $this->settings['xaxis']['label'];
+        $yaxisLabel = $this->settings['yaxis']['label'];
 
         if ($type === 'candlesticks') {
             $series = (trim($this->settings['series']) !== '') ? $this->settings['series'] : $this->settings['candlesticks']['series']['value'];
@@ -166,7 +174,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $captionLabel = $this->settings['caption']['label'];
         $caption = $this->settings['caption']['text'];
 
-        return array($colors, $labels, $series, $captionLabel, $caption);
+        return array($title, $xaxisLabel, $yaxisLabel, $colors, $labels, $series, $captionLabel, $caption);
     }
 
 

@@ -23,6 +23,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <script type="{type}">
 
         var txRkwGraphsChart = {
+            title: <rkwGraphs:jsString data="{title}" />,
+            xaxisLabel: <rkwGraphs:jsString data="{xaxisLabel}" />,
+            yaxisLabel: <rkwGraphs:jsString data="{yaxisLabel}" />,
+            labels: <rkwGraphs:jsArray data="{labels}" />,
             series: <rkwGraphs:bars.series data="{series}" />,
             colors: <rkwGraphs:jsarray data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
@@ -38,11 +42,19 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 type: 'bar',
                 stacked: txRkwGraphsChart.stacked,
                 //  stackType: '100%',
+                events: {
+                    beforeMount: function (chartContext, config) {
+                      console.log(config);
+                    }
+                }
             },
             plotOptions: {
                 bar: {
                     horizontal: txRkwGraphsChart.horizontal,
                 },
+            },
+            title: {
+                text: txRkwGraphsChart.title,
             },
             stroke: {
                 width: 1,
@@ -52,17 +64,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
             colors: txRkwGraphsChart.colors,
             dataLabels: {
                 enabled:true,
-                style: {
-                    fontSize: '16px',
-                    fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
-                },
-                dropShadow: {
-                    enabled: true,
-                    top: 1,
-                    left: 2,
-                    blur: 3,
-                    opacity: 0.45
-                },
                 formatter: function(val) {
                     return Math.abs(val) + '%'
                 },
@@ -93,8 +94,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 },
             },
             xaxis: {
-                <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                categories: <rkwGraphs:jsArray data="{labels}" />,
+                title: {
+                    text: txRkwGraphsChart.xaxisLabel,
+                },
+                categories: txRkwGraphsChart.labels,
                 labels: {
                     trim : false,
                     rotate: -45,
@@ -114,6 +117,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
             },
             yaxis: {
+                title: {
+                    text: txRkwGraphsChart.yaxisLabel,
+                },
                 forceNiceScale : true,
                 labels: {
                     trim : false,
