@@ -1,11 +1,12 @@
 <?php
+
 namespace RKW\RkwGraphs\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /***
  *
- * This file is part of the "RKW Graphics" Extension for TYPO3 CMS.
+ * This file is part of the "RKW Graphs" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -21,21 +22,23 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 {
 
     /**
+     * @var
+     */
+    protected $contentUid;
+
+    /**
      * action pie
      *
      * @return void
      */
     public function donutAction()
     {
-
-        $contentUid = $this->getContentUid();
+        $this->initializeAction();
 
         $options = $this->setOptions();
 
-        $this->addRenderCallToFooter($contentUid);
-
         $options = array_merge($options, [
-            'contentUid' => $contentUid,
+            'contentUid' => $this->contentUid,
             'type' => 'text/javascript',
         ]);
 
@@ -49,18 +52,15 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function barsAction()
     {
-
-        $contentUid = $this->getContentUid();
+        $this->initializeAction();
 
         $options = $this->setOptions();
 
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
 
-        $this->addRenderCallToFooter($contentUid);
-
         $options = array_merge($options, [
-            'contentUid' => $contentUid,
+            'contentUid' => $this->contentUid,
             'horizontal' => $horizontal,
             'stacked' => $stacked,
             'stackedPercent' => true,
@@ -78,14 +78,12 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function candlesticksAction()
     {
-        $contentUid = $this->getContentUid();
+        $this->initializeAction();
 
         $options = $this->setOptions('candlesticks');
 
-        $this->addRenderCallToFooter($contentUid);
-
         $options = array_merge($options, [
-            'contentUid' => $contentUid,
+            'contentUid' => $this->contentUid,
             'type' => 'text/javascript',
         ]);
 
@@ -93,33 +91,49 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
-     * @param $contentUid
+     * @return void
      */
-    private function addRenderCallToFooter($contentUid)
+    protected function initializeAction()
     {
-        $GLOBALS['TSFE']->additionalFooterData['txRkwGraphsElement' . $contentUid] = '
+        $this->getContentUid();
+
+        $this->addRenderCallToFooter();
+    }
+
+    /**
+     * @return void
+     */
+    protected function getContentUid()
+    {
+        $this->contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function addRenderCallToFooter()
+    {
+        $txRkwGraphsChart = 'txRkwGraphsChart' . $this->contentUid;
+        $txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' . $this->contentUid;
+        $txRkwGraphsElement = 'txRkwGraphsElement' . $this->contentUid;
+
+        $GLOBALS['TSFE']->additionalFooterData[$txRkwGraphsElement] = '
             <script type="text/javascript">
-                var txRkwGraphsChart' . $contentUid . ' = new ApexCharts(
-                    document.querySelector("#txRkwGraphsChart' . $contentUid . '"),
-                    txRkwGraphsChartOptions' . $contentUid . '
+                var ' . $txRkwGraphsChart . ' = new ApexCharts(
+                    document.querySelector("#' . $txRkwGraphsChart . '"),
+                    ' . $txRkwGraphsChartOptions . '
                 );
-                txRkwGraphsChart' . $contentUid . '.render();
+                ' . $txRkwGraphsChart . '.render();
             </script>
         ';
     }
 
     /**
-     * @return int
-     */
-    private function getContentUid()
-    {
-        return intval($this->configurationManager->getContentObject()->data['uid']);
-    }
-
-    /**
+     * @param null $type
+     *
      * @return array
      */
-    private function setOptions($type = null)
+    protected function setOptions($type = null)
     {
         $title = $this->settings['title'];
 
@@ -156,6 +170,5 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             'legendShow'
         );
     }
-
 
 }
