@@ -145,6 +145,14 @@
 							</config>
 						</TCEforms>
 					</settings.series>
+					<settings.bars.offsetX>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.offsetX</label>
+							<config>
+								<type>text</type>
+							</config>
+						</TCEforms>
+					</settings.bars.offsetX>
 					<settings.caption.label>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.caption.label</label>

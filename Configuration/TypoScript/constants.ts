@@ -34,6 +34,7 @@ plugin.tx_rkwgraphs {
       }
       stacked = false
       horizontal = false
+      offsetX =
     }
     donut {
     }

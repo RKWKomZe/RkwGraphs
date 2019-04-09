@@ -25,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package RKW_RkwGraphs
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class OffsetXViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /**
@@ -49,27 +49,16 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $line = addslashes(str_replace(',', '.', $line));
 
             $items = GeneralUtility::trimExplode($delimiter, $line, true);
-            if (count($items) > 1) {
+            if (count($items) > 0) {
 
-                if (! is_numeric($items[0])) {
-                    $label = array_shift($items);
+                $series[] = [
+                    'data' => $items
+                ];
 
-                    $series[] = [
-                        'name' => $label,
-                        'data' => $items
-                    ];
-
-                } else {
-
-                    $series[] = [
-                        'data' => $items
-                    ];
-
-                }
             }
         }
 
-        return json_encode($series, JSON_NUMERIC_CHECK);
+        return json_encode($series[0]['data'], JSON_NUMERIC_CHECK);
         //===
     }
 

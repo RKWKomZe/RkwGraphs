@@ -35,6 +35,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
             stacked: Boolean({stacked}),
             horizontal: Boolean({horizontal}),
             legendShow: Boolean({legendShow}),
+            offsetX: <rkwGraphs:bars.offsetX data="{offsetX}" />,
         }
 
         var txRkwGraphsChartOptions{contentUid} = {
@@ -207,6 +208,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
             }
 
             txRkwGraphsChartOptions{contentUid}.yaxis.push(yaxis2);
+        }
+
+        if (txRkwGraphsChart.offsetX !== null && txRkwGraphsChart.offsetX.length > 0) {
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+
+            txRkwGraphsChartOptions{contentUid}.yaxis[0].min = Math.min(...txRkwGraphsChart.offsetX);
+            //  @todo: txRkwGraphsChartOptions{contentUid}.yaxis[0].max = Math.min(...txRkwGraphsChart.offsetX) + highest sum of values;
+            txRkwGraphsChartOptions{contentUid}.plotOptions.bar.offsetX = txRkwGraphsChart.offsetX;
         }
 
     </script>

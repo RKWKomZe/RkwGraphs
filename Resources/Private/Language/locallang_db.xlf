@@ -50,6 +50,9 @@
             <trans-unit id="flexform.graphs.series">
                 <source>Values</source>
             </trans-unit>
+            <trans-unit id="flexform.graphs.bars.offsetX">
+                <source>Bar offsets x-axis</source>
+            </trans-unit>
             <trans-unit id="flexform.graphs.caption.label">
                 <source>Caption label</source>
             </trans-unit>

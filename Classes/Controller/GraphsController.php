@@ -58,6 +58,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
+        $offsetX = $this->settings['bars']['offsetX'];
 
         $options = array_merge($options, [
             'contentUid' => $this->contentUid,
@@ -66,6 +67,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             'stackedPercent' => true,
             'percentage' => true,
             'type' => 'text/javascript',
+            'offsetX' => $offsetX
         ]);
 
         $this->view->assignMultiple($options);

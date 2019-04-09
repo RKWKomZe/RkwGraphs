@@ -61,6 +61,10 @@
                 <source>Values</source>
                 <target>Werte</target>
             </trans-unit>
+            <trans-unit id="flexform.graphs.bars.offsetX">
+                <source>Series offsets x-axis</source>
+                <source>Werteversatz auf x-Achse</source>
+            </trans-unit>
             <trans-unit id="flexform.graphs.caption.label">
                 <source>Caption label</source>
                 <target>Bildunterschrift (Label)</target>

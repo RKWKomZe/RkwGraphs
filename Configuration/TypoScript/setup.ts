@@ -41,6 +41,7 @@ plugin.tx_rkwgraphs {
       }
       stacked = {$plugin.tx_rkwgraphs.settings.bars.stacked}
       horizontal = {$plugin.tx_rkwgraphs.settings.bars.horizontal}
+      offsetX = {$plugin.tx_rkwgraphs.settings.bars.offsetX}
     }
     # @todo: Kann dieser Wert so auch in der constants.ts übergeben werden?
     candlesticks {
@@ -67,7 +68,7 @@ plugin.tx_rkwgraphs {
 
 
 // include JS
-page.includeJSFooterlibs.txRkwGraphsApexCharts = EXT:rkw_graphs/Resources/Public/Js/ApexCharts-v3.6.2.min.js
+page.includeJSFooterlibs.txRkwGraphsApexCharts = EXT:rkw_graphs/Resources/Public/Js/ApexCharts-v3.6.2.js
 page.includeCSS.txRkwGraphsCharts = EXT:rkw_graphs/Resources/Public/Css/Charts.css
 
 
