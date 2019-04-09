@@ -135,6 +135,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function setOptions($type = null)
     {
+
         $title = $this->settings['title'];
 
         $colors = $this->settings['colors'];

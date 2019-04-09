@@ -2146,7 +2146,8 @@
                 position: 'top' // top, center, bottom
                 // TODO: provide stackedLabels for stacked charts which gives additions of values
 
-              }
+              },
+              offsetX: []
             },
             candlestick: {
               colors: {
@@ -5707,7 +5708,6 @@
             xArrj.push(x + barWidth / 2);
           } // eldatalabels
 
-
           var elDataLabelsWrap = graphics.group({
             class: 'apexcharts-datalabels'
           });
@@ -6714,7 +6714,6 @@
           barHeight = yDivision;
           barHeight = barHeight * parseInt(w.config.plotOptions.bar.barHeight) / 100;
           zeroW = this.baseLineInvertedY + w.globals.padHorizontal + (this.isReversed ? w.globals.gridWidth : 0) - (this.isReversed ? this.baseLineInvertedY * 2 : 0); // initial y position is half of barHeight * half of number of Bars
-
           y = (yDivision - barHeight) / 2;
         } else {
           // width divided into equal parts
@@ -6791,7 +6790,12 @@
           barXPosition = bXP;
         } else {
           // the first series will not have prevX values
-          barXPosition = zeroW;
+          if (w.config.plotOptions.bar.offsetX.length > 0 && w.config.plotOptions.bar.horizontal === true) {
+            var initialBarOffsetX = w.config.plotOptions.bar.offsetX[j] / this.invertedYRatio;
+            barXPosition = (initialBarOffsetX < 0) ? zeroW - Math.abs(initialBarOffsetX) : zeroW + Math.abs(initialBarOffsetX);
+          } else {
+            barXPosition = zeroW;
+          }
         }
 
         if (this.series[i][j] === null) {
