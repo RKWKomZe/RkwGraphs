@@ -9,9 +9,6 @@
 			<trans-unit id="tx_rkwgraphs_domain_model_graphics.description">
 				<source>Description</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwgraphs_domain_model_graphics">
-				<source>Graphics</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>

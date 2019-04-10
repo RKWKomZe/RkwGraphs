@@ -9,7 +9,7 @@ call_user_func(
             'RKW.RkwGraphs',
             'Graphs',
             [
-                'Graphs' => 'donut, bars'
+                'Graphs' => 'donut, bars, candlesticks'
             ],
             // non-cacheable actions
             [
