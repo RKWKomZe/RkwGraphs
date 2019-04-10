@@ -254,6 +254,20 @@ Otherwise your changes will be overwritten the next time you save the extension 
             };
         }
 
+        if (txRkwGraphsChartOptions{contentUid}.chart.stacked !== true) {
+            var extractSeriesData = [];
+
+            txRkwGraphsChart.series.forEach(function(serie) {
+                extractSeriesData.push(serie.data);
+            });
+
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+            if (extractSeriesData.length === 1 && txRkwGraphsChartOptions{contentUid}.colors.length === extractSeriesData[0].length) {
+                <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+                txRkwGraphsChartOptions{contentUid}.plotOptions.bar.distributed = true;
+            }
+        }
+
         if (txRkwGraphsChart.showZeroLineBorderColor === true) {
             <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
             txRkwGraphsChartOptions{contentUid}.annotations = {
