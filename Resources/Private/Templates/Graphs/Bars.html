@@ -36,6 +36,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
             horizontal: Boolean({horizontal}),
             legendShow: Boolean({legendShow}),
             offsetX: <rkwGraphs:bars.offsetX data="{offsetX}" />,
+            showZeroLineBorderColor: false,
+            zeroLineBorderColor: '#f4a48e',
         }
 
         var txRkwGraphsChartOptions{contentUid} = {
@@ -211,11 +213,56 @@ Otherwise your changes will be overwritten the next time you save the extension 
         }
 
         if (txRkwGraphsChart.offsetX !== null && txRkwGraphsChart.offsetX.length > 0) {
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+            var extractSeriesData = [],
+                totalStackSums;
 
-            txRkwGraphsChartOptions{contentUid}.yaxis[0].min = Math.min(...txRkwGraphsChart.offsetX);
-            //  @todo: txRkwGraphsChartOptions{contentUid}.yaxis[0].max = Math.min(...txRkwGraphsChart.offsetX) + highest sum of values;
+            txRkwGraphsChart.series.forEach(function(serie) {
+                extractSeriesData.push(serie.data);
+            });
+
+            totalStackSums = extractSeriesData.reduce((r, a) => a.map((b, i) => (r[i] || 0) + b), []);
+
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+            txRkwGraphsChartOptions{contentUid}.yaxis[0].min = Math.min(...txRkwGraphsChart.offsetX) - 5;
+            txRkwGraphsChartOptions{contentUid}.yaxis[0].max = Math.max(...txRkwGraphsChart.offsetX) + Math.max(...totalStackSums);
             txRkwGraphsChartOptions{contentUid}.plotOptions.bar.offsetX = txRkwGraphsChart.offsetX;
+            txRkwGraphsChart.showZeroLineBorderColor = (txRkwGraphsChartOptions{contentUid}.yaxis[0].min < 0) ? true : false;
+
+        }
+
+
+        if (txRkwGraphsChartOptions{contentUid}.plotOptions.bar.horizontal === true) {
+
+            txRkwGraphsChart.series.forEach(function(serie) {
+                if (Math.min(...serie.data) < 0) {
+                    txRkwGraphsChart.showZeroLineBorderColor = true;
+                }
+            });
+
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+            txRkwGraphsChartOptions{contentUid}.grid = {
+                xaxis: {
+                    lines: {
+                        show: true,
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: false
+                    }
+                }
+            };
+        }
+
+        if (txRkwGraphsChart.showZeroLineBorderColor === true) {
+            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+            txRkwGraphsChartOptions{contentUid}.annotations = {
+                xaxis: [{
+                    x: 0,
+                    borderColor: txRkwGraphsChart.zeroLineBorderColor,
+                    strokeDashArray: 0,
+                }]
+            };
         }
 
     </script>
