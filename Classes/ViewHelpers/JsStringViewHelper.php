@@ -29,7 +29,7 @@ class JsStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
 {
 
     /**
-     * Builds labels
+     * Returns string as Json
      *
      * @param string $data
      * @param string $delimiter
@@ -39,7 +39,6 @@ class JsStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
     public function render($data)
     {
         $string = $data;
-
         return json_encode($string, JSON_NUMERIC_CHECK);
         //===
     }

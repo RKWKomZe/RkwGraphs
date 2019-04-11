@@ -43,7 +43,6 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         $series = [];
         $parsedData = [];
 
-
         $lines = GeneralUtility::trimExplode(PHP_EOL, $data, true);
         foreach ($lines as $line) {
 
@@ -53,11 +52,11 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $items = GeneralUtility::trimExplode($delimiter, $line, true);
             if (count($items) > 1) {
 
-                $x = array_shift($items);
+                $label = array_shift($items);
                 $y = $items;
 
                 $parsedData[] = [
-                        'x' => $x,
+                        'x' => $label,
                         'y' => $y
                     ];
 
@@ -67,7 +66,6 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         $series[] =  [
             'data' => $parsedData
         ];
-
 
         return json_encode($series, JSON_NUMERIC_CHECK);
         //===

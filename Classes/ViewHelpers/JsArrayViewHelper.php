@@ -29,7 +29,7 @@ class JsArrayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 {
 
     /**
-     * Builds labels
+     * Parses strings to arrays
      *
      * @param string $data
      * @param string $delimiter

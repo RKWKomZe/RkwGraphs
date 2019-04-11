@@ -18,9 +18,9 @@ namespace RKW\RkwGraphs\ViewHelpers\Bars;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class TypolinkViewHelper
+ * Class OffsetXViewHelper
  *
- * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwGraphs
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -29,9 +29,9 @@ class OffsetXViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 {
 
     /**
-     * Build series from array data
+     * Build x axis offset for individual series from array data
      *
-     * each line is one series, the first item of each line is the label
+     * Each separated value corresponds to the offset of an individual serie
      *
      * @param string $data
      * @param string $delimiter
@@ -40,25 +40,12 @@ class OffsetXViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
     public function render($data, $delimiter = '|')
     {
 
-        $series = [];
+        // cleanup - floating values and slashes
+        $line = addslashes(str_replace(',', '.', $data));
 
-        $lines = GeneralUtility::trimExplode(PHP_EOL, $data, true);
-        foreach ($lines as $line) {
+        $series = GeneralUtility::trimExplode($delimiter, $line, true);
 
-            // cleanup - floating values and slashes
-            $line = addslashes(str_replace(',', '.', $line));
-
-            $items = GeneralUtility::trimExplode($delimiter, $line, true);
-            if (count($items) > 0) {
-
-                $series[] = [
-                    'data' => $items
-                ];
-
-            }
-        }
-
-        return json_encode($series[0]['data'], JSON_NUMERIC_CHECK);
+        return json_encode($series, JSON_NUMERIC_CHECK);
         //===
     }
 
