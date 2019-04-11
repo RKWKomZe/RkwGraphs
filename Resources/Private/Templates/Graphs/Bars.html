@@ -42,11 +42,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
         var txRkwGraphsChartOptions{contentUid} = {
             chart: {
-                width: 900,
-                height: 600,    //  @todo: Set height to set bar heights on horizontal bar graphs
                 type: 'bar',
                 stacked: txRkwGraphsChart.stacked,
-                //  stackType: '100%',
             },
             plotOptions: {
                 bar: {
@@ -56,22 +53,16 @@ Otherwise your changes will be overwritten the next time you save the extension 
             title: {
                 text: txRkwGraphsChart.title,
             },
-            stroke: {
-                width: 1,
-                colors: ["#fff"],
-            },
             series: txRkwGraphsChart.series,
             colors: txRkwGraphsChart.colors,
             dataLabels: {
                 enabled:true,
-                formatter: function(val) {
+                formatter: function(val) {  //  @todo: set unit
                     return Math.abs(val) + '%'
                 },
             },
             legend: {
                 show: txRkwGraphsChart.legendShow,
-                fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
-                position: 'top',
             },
             tooltip: {
                 shared: false,
@@ -88,9 +79,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     formatter: function(val) {
                         return Math.abs(val) + '%'
                     }
-                },
-                style: {
-                    fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
                 },
             },
             xaxis: {
@@ -109,9 +97,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
                             return strArray[0]
                         }
                         return val
-                    },
-                    style: {
-                        fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
                     },
                  },
 
@@ -137,46 +122,28 @@ Otherwise your changes will be overwritten the next time you save the extension 
                         }
                         return Math.abs(Math.round(val)) + '%'
                     },
-                    style: {
-                        fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
-                    },
+                    style: {}
                 }
             }],
             responsive: [
                 {
-                    breakpoint: 1488,
+                    breakpoint: 1200,
                     options: {
-                        chart: {
-                            width: 750,
-                        },
-                    }
-                },
-                {
-                    breakpoint: 1280,
-                    options: {
-                        chart: {
-                            width: 500,
-                        },
                     }
                 },
                 {
                     breakpoint: 1025,
                     options: {
-                        chart: {
-                            width: 600,
+                        dataLabels: {
+                            enabled: true,
                         },
                     }
                 },
                 {
-                    breakpoint: 650,
+                    breakpoint: 769,
                     options: {
-                        chart: {
-                            width: 310,
-                        },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                            },
+                        dataLabels: {
+                            enabled: false,
                         },
                     }
                 },
