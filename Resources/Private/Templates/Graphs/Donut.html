@@ -27,22 +27,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
             colors: <rkwGraphs:jsArray data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
-            stacked: Boolean({stacked}),
-            horizontal: Boolean({horizontal})
+            legendShow: Boolean({legendShow}),
         }
 
         var txRkwGraphsChartOptions{contentUid} = {
             chart: {
-                width: 600,
-                height: 500,
+                height: 400,
                 type: 'donut',
-            },
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: '65%'
-                    }
-                }
             },
             labels: txRkwGraphsChart.labels,
             series: txRkwGraphsChart.series,
@@ -52,89 +43,47 @@ Otherwise your changes will be overwritten the next time you save the extension 
             colors: txRkwGraphsChart.colors,
             dataLabels: {
                 enabled: true,
-                style: {
-                    fontSize: '16px',
-                    fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
-                },
-                dropShadow: {
-                    enabled: true,
-                    top: 1,
-                    left: 2,
-                    blur: 3,
-                    opacity: 0.45
-                }
             },
             legend: {
-                show: true,
-                fontSize: '16px',
-                fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
+                show: txRkwGraphsChart.legendShow,
             },
             tooltip: {
                 enabled: false,
             },
             responsive: [
-
                 {
-                    breakpoint: 1280,
+                    breakpoint: 1200,
                     options: {
                         chart: {
-                            width: 500,
-                            height: 500,
+                            height: 'auto',
                         },
                         legend: {
                             position: 'bottom',
-                        },
+                        }
                     }
                 },
                 {
                     breakpoint: 1025,
                     options: {
                         chart: {
-                            width: 600,
-                            height: 500,
+                            height: 400,
                         },
                         legend: {
                             position: 'right',
-                            fontSize: '14px',
-                        },
-                        dataLabels: {
-                            style: {
-                                fontSize: '14px',
-                            },
-                            dropShadow: {
-                                enabled: false,
-                            },
-                        },
+                        }
                     }
                 },
                 {
-                    breakpoint: 660,
+                    breakpoint: 769,
                     options: {
                         chart: {
-                            width: 500,
-                            height: 500,
+                            height: 'auto',
                         },
                         legend: {
                             position: 'bottom',
-                        },
+                        }
                     }
                 },
-                {
-                    breakpoint: 540,
-                    options: {
-                        chart: {
-                            width: 310,
-                            height: 310,
-                        },
-                        plotOptions: {
-                            pie: {
-                                donut: {
-                                    size: '50%'
-                                }
-                            }
-                        },
-                    }
-                }
             ]
         };
 
