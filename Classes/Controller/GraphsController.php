@@ -39,7 +39,6 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $options = array_merge($options, [
             'contentUid' => $this->contentUid,
-            'type' => 'text/javascript',
         ]);
 
         $this->view->assignMultiple($options);
@@ -66,8 +65,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             'stacked' => $stacked,
             'stackedPercent' => true,
             'percentage' => true,
-            'type' => 'text/javascript',
-            'offsetX' => $offsetX
+            'offsetX' => $offsetX,
         ]);
 
         $this->view->assignMultiple($options);
@@ -86,7 +84,6 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $options = array_merge($options, [
             'contentUid' => $this->contentUid,
-            'type' => 'text/javascript',
         ]);
 
         $this->view->assignMultiple($options);
@@ -138,6 +135,8 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function setOptions($type = null)
     {
 
+        $type = 'text/javascript';
+
         $title = $this->settings['title'];
 
         $colors = $this->settings['colors'];
@@ -160,6 +159,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $legendShow = filter_var($this->settings['legend']['show'], FILTER_VALIDATE_BOOLEAN);
 
         return compact(
+            'type',
             'title',
             'xaxisLabel',
             'yaxisLabel',
