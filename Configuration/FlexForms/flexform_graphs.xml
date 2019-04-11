@@ -58,16 +58,6 @@
 							</config>
 						</TCEforms>
 					</settings.bars.horizontal>
-					<settings.bars.yaxis2.show>
-						<TCEforms>
-							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.yaxis2.show</label>
-							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
-							<onChange>reload</onChange>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.bars.yaxis2.show>
 					<settings.xaxis.label>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.xaxis.label</label>
@@ -100,17 +90,23 @@
 							</config>
 						</TCEforms>
 					</settings.yaxis.label>
+					<settings.bars.yaxis2.show>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.yaxis2.show</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<onChange>reload</onChange>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.bars.yaxis2.show>
 					<settings.bars.yaxis2.label>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.yaxis2.label</label>
 							<displayCond>
-								<OR>
-									<numIndex index="0">FIELD:switchableControllerActions:=:Graphs->bars</numIndex>
-									<numIndex index="1">FIELD:switchableControllerActions:=:Graphs->candlesticks</numIndex>
-									<AND>
-										<numIndex>FIELD:settings.bars.yaxis2.show:=:1</numIndex>
-									</AND>
-								</OR>
+								<AND>
+									<numIndex>FIELD:settings.bars.yaxis2.show:=:1</numIndex>
+								</AND>
 							</displayCond>
 							<config>
 								<type>input</type>
@@ -148,6 +144,11 @@
 					<settings.bars.offsetX>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.offsetX</label>
+							<displayCond>
+								<AND>
+									<numIndex index="0">FIELD:switchableControllerActions:=:Graphs->bars</numIndex>
+								</AND>
+							</displayCond>
 							<config>
 								<type>text</type>
 							</config>
