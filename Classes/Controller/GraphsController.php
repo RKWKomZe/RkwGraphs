@@ -132,9 +132,8 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      *
      * @return array
      */
-    protected function setOptions($type = null)
+    protected function setOptions()
     {
-
         $type = 'text/javascript';
 
         $title = $this->settings['title'];
@@ -142,6 +141,8 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $colors = $this->settings['colors'];
         $labels = $this->settings['labels'];
         $series = $this->settings['series'];
+
+        $unit = $this->settings['unit'];
 
         $xaxisLabel = $this->settings['xaxis']['label'];
         $yaxisLabel = $this->settings['yaxis']['label'];
@@ -168,6 +169,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             'colors',
             'labels',
             'series',
+            'unit',
             'captionLabel',
             'caption',
             'legendShow'

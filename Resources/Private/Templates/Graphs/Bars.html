@@ -29,7 +29,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
             yaxis2Label: <rkwGraphs:jsString data="{yaxis2Label}" />,
             labels: <rkwGraphs:jsArray data="{labels}" />,
             series: <rkwGraphs:bars.series data="{series}" />,
-            colors: <rkwGraphs:jsarray data="{colors}" />,
+            unit: <rkwGraphs:jsString data="{unit}" />,
+            colors: <rkwGraphs:jsArray data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             stacked: Boolean({stacked}),
@@ -39,6 +40,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
             showZeroLineBorderColor: false,
             zeroLineBorderColor: '#f4a48e',
         }
+
+        console.log('txRkwGraphsChart', txRkwGraphsChart.unit);
 
         var txRkwGraphsChartOptions{contentUid} = {
             chart: {
@@ -57,8 +60,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
             colors: txRkwGraphsChart.colors,
             dataLabels: {
                 enabled:true,
-                formatter: function(val) {  //  @todo: set unit
-                    return Math.abs(val) + '%'
+                formatter: function(val) {
+                    return Math.abs(val) + txRkwGraphsChart.unit
                 },
             },
             legend: {
@@ -77,7 +80,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 },
                 y: {
                     formatter: function(val) {
-                        return Math.abs(val) + '%'
+                        return Math.abs(val) + txRkwGraphsChart.unit
                     }
                 },
             },
@@ -120,7 +123,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                             }
                             return val
                         }
-                        return Math.abs(Math.round(val)) + '%'
+                        return Math.abs(Math.round(val)) + txRkwGraphsChart.unit
                     },
                     style: {}
                 }

@@ -29,6 +29,7 @@ plugin.tx_rkwgraphs {
     colors = {$plugin.tx_rkwgraphs.settings.colors}
     labels = {$plugin.tx_rkwgraphs.settings.labels}
     series = {$plugin.tx_rkwgraphs.settings.series}
+    unit = {$plugin.tx_rkwgraphs.settings.unit}
     caption {
       label = {$plugin.tx_rkwgraphs.settings.caption.label}
       text = {$plugin.tx_rkwgraphs.settings.caption.text}

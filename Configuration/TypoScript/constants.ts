@@ -23,6 +23,7 @@ plugin.tx_rkwgraphs {
     colors = #000000
     labels = gut|mittel|schlecht
     series = 10|15|20
+    unit = %
     caption {
       label = Bildunterschrift (Label)
       text = Bildunterschrift (Text)
@@ -36,8 +37,7 @@ plugin.tx_rkwgraphs {
       horizontal = false
       offsetX =
     }
-    donut {
-    }
+    donut =
     legend {
       show = true
     }

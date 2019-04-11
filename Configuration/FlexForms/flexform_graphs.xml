@@ -141,6 +141,16 @@
 							</config>
 						</TCEforms>
 					</settings.series>
+					<settings.unit>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.unit</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.unit>
 					<settings.bars.offsetX>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.offsetX</label>
