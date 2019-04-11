@@ -24,18 +24,18 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
         var txRkwGraphsChart = {
             title: <rkwGraphs:jsString data="{title}" />,
+            xaxisLabel: <rkwGraphs:jsString data="{xaxisLabel}" />,
             yaxisLabel: <rkwGraphs:jsString data="{yaxisLabel}" />,
             labels: <rkwGraphs:jsArray data="{labels}" />,
             series: <rkwGraphs:candlesticks.series data="{series}" />,
             colors: <rkwGraphs:candlesticks.colors data="{colors}" />,
             yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" multiplier="8.5" />,
+            legendShow: Boolean({legendShow}),
         }
 
         var txRkwGraphsChartOptions{contentUid} = {
             chart: {
-                width: '100%',
-                height: 600,
                 type: 'candlestick',
             },
             series: txRkwGraphsChart.series,
@@ -48,9 +48,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 text: txRkwGraphsChart.title,
             },
             legend: {
-                show: true,
-                fontFamily: 'ff-tisa-web-pro, Times New Roman, Times, serif',
-                position: 'top',
+                show: txRkwGraphsChart.legendShow,
             },
             tooltip: {
                 shared: false,
@@ -68,11 +66,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
                         return Math.abs(val) + '%'
                     }
                 },
-                style: {
-                    fontFamily: 'ff-tisa-sans-web-pro, Arial, Tahoma, Verdana, sans-serif',
-                },
             },
             xaxis: {
+                title: {
+                    text: txRkwGraphsChart.xaxisLabel,
+                },
                 categories: txRkwGraphsChart.labels,
                 labels: {
                     trim : false,
@@ -85,53 +83,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 title: {
                     text: txRkwGraphsChart.yaxisLabel,
                 },
-                tickAmount: 10,
-                min: 0,
                 forceNiceScale: true,
-                tooltip: {
-                    enabled: true
-                }
             },
-            responsive: [
-                {
-                    breakpoint: 1488,
-                    options: {
-                        chart: {
-                            width: 750,
-                        },
-                    }
-                },
-                {
-                    breakpoint: 1280,
-                    options: {
-                        chart: {
-                            width: 500,
-                        },
-                    }
-                },
-                {
-                    breakpoint: 1025,
-                    options: {
-                        chart: {
-                            width: 600,
-                        },
-                    }
-                },
-                {
-                    breakpoint: 650,
-                    options: {
-                        chart: {
-                            width: 310,
-                        },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                            },
-                        },
-                    }
-                },
-            ]
-
         };
 
     </script>
