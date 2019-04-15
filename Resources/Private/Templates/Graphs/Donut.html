@@ -21,7 +21,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
 
-        var txRkwGraphsChart = {
+        //  dynamic variable names to prevent interruption by fluid parser
+        var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
+        var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
+
+        //  copy scope to self to use it even within chart callbacks
+        var self = this;
+
+        self[txRkwGraphsChartInit] = {
             labels: <rkwGraphs:jsArray data="{labels}" />,
             series: <rkwGraphs:jsArray data="{series}" checkFloat="true" />,
             colors: <rkwGraphs:jsArray data="{colors}" />,
@@ -30,22 +37,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
             legendShow: Boolean({legendShow}),
         }
 
-        var txRkwGraphsChartOptions{contentUid} = {
+        self[txRkwGraphsChartOptions] = {
             chart: {
                 height: 400,
                 type: 'donut',
             },
-            labels: txRkwGraphsChart.labels,
-            series: txRkwGraphsChart.series,
+            labels: self[txRkwGraphsChartInit].labels,
+            series: self[txRkwGraphsChartInit].series,
             fill: {
-                colors: txRkwGraphsChart.colors,
+                colors: self[txRkwGraphsChartInit].colors,
             },
-            colors: txRkwGraphsChart.colors,
+            colors: self[txRkwGraphsChartInit].colors,
             dataLabels: {
                 enabled: true,
             },
             legend: {
-                show: txRkwGraphsChart.legendShow,
+                show: self[txRkwGraphsChartInit].legendShow,
             },
             tooltip: {
                 enabled: false,

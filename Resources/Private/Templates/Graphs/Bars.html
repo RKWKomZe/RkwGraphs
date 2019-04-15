@@ -21,7 +21,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
     <script type="{type}">
 
-        var txRkwGraphsChart = {
+        //  dynamic variable names to prevent interruption by fluid parser
+        var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
+        var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
+
+        //  copy scope to self to use it even within chart callbacks
+        var self = this;
+
+        self[txRkwGraphsChartInit] = {
             title: <rkwGraphs:jsString data="{title}" />,
             xaxisLabel: <rkwGraphs:jsString data="{xaxisLabel}" />,
             yaxisLabel: <rkwGraphs:jsString data="{yaxisLabel}" />,
@@ -41,29 +48,29 @@ Otherwise your changes will be overwritten the next time you save the extension 
             zeroLineBorderColor: '#f4a48e',
         }
 
-        var txRkwGraphsChartOptions{contentUid} = {
+        self[txRkwGraphsChartOptions] = {
             chart: {
                 type: 'bar',
-                stacked: txRkwGraphsChart.stacked,
+                stacked: self[txRkwGraphsChartInit].stacked,
             },
             plotOptions: {
                 bar: {
-                    horizontal: txRkwGraphsChart.horizontal,
+                    horizontal: self[txRkwGraphsChartInit].horizontal,
                 },
             },
             title: {
-                text: txRkwGraphsChart.title,
+                text: self[txRkwGraphsChartInit].title,
             },
-            series: txRkwGraphsChart.series,
-            colors: txRkwGraphsChart.colors,
+            series: self[txRkwGraphsChartInit].series,
+            colors: self[txRkwGraphsChartInit].colors,
             dataLabels: {
                 enabled:true,
                 formatter: function(val) {
-                    return Math.abs(val) + txRkwGraphsChart.unit
+                    return Math.abs(val) + self[txRkwGraphsChartInit].unit
                 },
             },
             legend: {
-                show: txRkwGraphsChart.legendShow,
+                show: self[txRkwGraphsChartInit].legendShow,
             },
             tooltip: {
                 shared: false,
@@ -78,19 +85,19 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 },
                 y: {
                     formatter: function(val) {
-                        return Math.abs(val) + txRkwGraphsChart.unit
+                        return Math.abs(val) + self[txRkwGraphsChartInit].unit
                     }
                 },
             },
             xaxis: {
                 title: {
-                    text: txRkwGraphsChart.xaxisLabel,
+                    text: self[txRkwGraphsChartInit].xaxisLabel,
                 },
-                categories: txRkwGraphsChart.labels,
+                categories: self[txRkwGraphsChartInit].labels,
                 labels: {
                     trim : false,
                     rotate: -45,
-                    minHeight: txRkwGraphsChart.xAxisMinHeight,
+                    minHeight: self[txRkwGraphsChartInit].xAxisMinHeight,
                     rotateAlways: true,
                     formatter: function(val) {
                         var strArray = val.toString().split('#');
@@ -104,7 +111,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
             },
             yaxis: [{
                 title: {
-                    text: txRkwGraphsChart.yaxisLabel,
+                    text: self[txRkwGraphsChartInit].yaxisLabel,
                     style: {
                         color: ''
                     }
@@ -112,7 +119,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 forceNiceScale : true,
                 labels: {
                     trim : false,
-                    minWidth: txRkwGraphsChart.yAxisMinWidth,
+                    minWidth: self[txRkwGraphsChartInit].yAxisMinWidth,
                     formatter: function(val) {
                         if (isNaN(val)) {
                             var strArray = val.toString().split('#');
@@ -121,7 +128,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                             }
                             return val
                         }
-                        return Math.abs(Math.round(val)) + txRkwGraphsChart.unit
+                        return Math.abs(Math.round(val)) + self[txRkwGraphsChartInit].unit
                     },
                     style: {}
                 }
@@ -153,14 +160,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
         };
 
         //  update options, if necessary
-        if (txRkwGraphsChart.yaxis2Show) {
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
+        if (self[txRkwGraphsChartInit].yaxis2Show) {
+            var ycolor = self[txRkwGraphsChartInit].colors[0];
+            var y2color = self[txRkwGraphsChartInit].colors[1];
 
-            var ycolor = txRkwGraphsChart.colors[0];
-            var y2color = txRkwGraphsChart.colors[1];
-
-            txRkwGraphsChartOptions{contentUid}.yaxis[0].title.style.color = ycolor;
-            txRkwGraphsChartOptions{contentUid}.yaxis[0].labels.style.color = ycolor;
+            self[txRkwGraphsChartOptions].yaxis[0].title.style.color = ycolor;
+            self[txRkwGraphsChartOptions].yaxis[0].labels.style.color = ycolor;
 
             var yaxis2 = {
                 opposite: true,
@@ -170,45 +175,42 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     }
                 },
                 title: {
-                  text: txRkwGraphsChart.yaxis2Label,
+                  text: self[txRkwGraphsChartInit].yaxis2Label,
                   style: {
                     color: y2color
                   }
                 },
             }
 
-            txRkwGraphsChartOptions{contentUid}.yaxis.push(yaxis2);
+            self[txRkwGraphsChartOptions].yaxis.push(yaxis2);
         }
 
-        if (txRkwGraphsChart.offsetX !== null && txRkwGraphsChart.offsetX.length > 0) {
+        if (self[txRkwGraphsChartInit].offsetX !== null && self[txRkwGraphsChartInit].offsetX.length > 0) {
             var extractSeriesData = [],
                 totalStackSums;
 
-            txRkwGraphsChart.series.forEach(function(serie) {
+            self[txRkwGraphsChartInit].series.forEach(function(serie) {
                 extractSeriesData.push(serie.data);
             });
 
             totalStackSums = extractSeriesData.reduce((r, a) => a.map((b, i) => (r[i] || 0) + b), []);
 
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-            txRkwGraphsChartOptions{contentUid}.yaxis[0].min = Math.min(...txRkwGraphsChart.offsetX) - 5;
-            txRkwGraphsChartOptions{contentUid}.yaxis[0].max = Math.max(...txRkwGraphsChart.offsetX) + Math.max(...totalStackSums);
-            txRkwGraphsChartOptions{contentUid}.plotOptions.bar.offsetX = txRkwGraphsChart.offsetX;
-            txRkwGraphsChart.showZeroLineBorderColor = (txRkwGraphsChartOptions{contentUid}.yaxis[0].min < 0) ? true : false;
-
+            self[txRkwGraphsChartOptions].yaxis[0].min = Math.min(...self[txRkwGraphsChartInit].offsetX) - 5;
+            self[txRkwGraphsChartOptions].yaxis[0].max = Math.max(...self[txRkwGraphsChartInit].offsetX) + Math.max(...totalStackSums);
+            self[txRkwGraphsChartOptions].plotOptions.bar.offsetX = self[txRkwGraphsChartInit].offsetX;
+            self[txRkwGraphsChartInit].showZeroLineBorderColor = (self[txRkwGraphsChartOptions].yaxis[0].min < 0) ? true : false;
         }
 
 
-        if (txRkwGraphsChartOptions{contentUid}.plotOptions.bar.horizontal === true) {
+        if (self[txRkwGraphsChartOptions].plotOptions.bar.horizontal === true) {
 
-            txRkwGraphsChart.series.forEach(function(serie) {
+            self[txRkwGraphsChartInit].series.forEach(function(serie) {
                 if (Math.min(...serie.data) < 0) {
-                    txRkwGraphsChart.showZeroLineBorderColor = true;
+                    self[txRkwGraphsChartInit].showZeroLineBorderColor = true;
                 }
             });
 
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-            txRkwGraphsChartOptions{contentUid}.grid = {
+            self[txRkwGraphsChartOptions].grid = {
                 xaxis: {
                     lines: {
                         show: true,
@@ -222,26 +224,23 @@ Otherwise your changes will be overwritten the next time you save the extension 
             };
         }
 
-        if (txRkwGraphsChartOptions{contentUid}.chart.stacked !== true) {
+        if (self[txRkwGraphsChartOptions].chart.stacked !== true) {
             var extractSeriesData = [];
 
-            txRkwGraphsChart.series.forEach(function(serie) {
+            self[txRkwGraphsChartInit].series.forEach(function(serie) {
                 extractSeriesData.push(serie.data);
             });
 
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-            if (extractSeriesData.length === 1 && txRkwGraphsChartOptions{contentUid}.colors.length === extractSeriesData[0].length) {
-                <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-                txRkwGraphsChartOptions{contentUid}.plotOptions.bar.distributed = true;
+            if (extractSeriesData.length === 1 && self[txRkwGraphsChartOptions].colors.length === extractSeriesData[0].length) {
+                self[txRkwGraphsChartOptions].plotOptions.bar.distributed = true;
             }
         }
 
-        if (txRkwGraphsChart.showZeroLineBorderColor === true) {
-            <f:comment>This comment is here to prevent fluid's parser from detecting the content of brackets</f:comment>
-            txRkwGraphsChartOptions{contentUid}.annotations = {
+        if (self[txRkwGraphsChartInit].showZeroLineBorderColor === true) {
+            self[txRkwGraphsChartOptions].annotations = {
                 xaxis: [{
                     x: 0,
-                    borderColor: txRkwGraphsChart.zeroLineBorderColor,
+                    borderColor: self[txRkwGraphsChartInit].zeroLineBorderColor,
                     strokeDashArray: 0,
                 }]
             };
