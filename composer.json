@@ -14,6 +14,12 @@
             "email": "developer@steffenkroggel.de",
             "homepage": "http://www.steffenkroggel.de",
             "role": "Developer"
+        },
+        {
+            "name": "Christian Dilger",
+            "email": "c.dilger@addorange.de",
+            "homepage": "http://addorange.de",
+            "role": "Developer"
         }
     ],
     "require": {
