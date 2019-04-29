@@ -44,22 +44,11 @@ plugin.tx_rkwgraphs {
       horizontal = {$plugin.tx_rkwgraphs.settings.bars.horizontal}
       offsetX = {$plugin.tx_rkwgraphs.settings.bars.offsetX}
     }
-    # @todo: Kann dieser Wert so auch in der constants.ts übergeben werden?
     candlesticks {
       series = TEXT
       series.value (
-			1|6629.81|6650.5|6623.04|6633.33
-            2|6632.01|6643.59|6620|6630.11
-            3|6630.71|6648.95|6623.34|6635.65
-			4|6635.65|6651|6629.67|6638.24
-			5|6638.24|6640|6620|6624.47
-			6|6624.53|6636.03|6621.68|6624.31
-			7|6624.61|6632.2|6617|6626.02
-			8|6627|6627.62|6584.22|6603.02
-			9|6605|6608.03|6598.95|6604.01
-			10|6604.5|6614.4|6602.26|6608.02
+      {$plugin.tx_rkwgraphs.settings.candlesticks.series.value}
       )
-      # series = {$plugin.tx_rkwgraphs.settings.candlesticks.series}
     }
     legend {
       show = {$plugin.tx_rkwgraphs.settings.legend.show}
