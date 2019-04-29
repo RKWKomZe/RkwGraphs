@@ -132,9 +132,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      *
      * @return array
      */
-    protected function setOptions()
+    protected function setOptions($type = '')
     {
-        $type = 'text/javascript';
+        $scriptType = 'text/javascript';
 
         $title = $this->settings['title'];
 
@@ -160,7 +160,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $legendShow = filter_var($this->settings['legend']['show'], FILTER_VALIDATE_BOOLEAN);
 
         return compact(
-            'type',
+            'scriptType',
             'title',
             'xaxisLabel',
             'yaxisLabel',
