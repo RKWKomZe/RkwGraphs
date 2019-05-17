@@ -45,6 +45,18 @@
                 <source>Horizontal presentation</source>
                 <target>Horizontale Darstellung</target>
             </trans-unit>
+            <trans-unit id="flexform.graphs.bars.dataLabels.offsetX">
+                <source>Horizontal offset of data label</source>
+                <target>Horizontaler Versatz der Balkenbeschriftung</target>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.bars.dataLabels.offsetY">
+                <source>Vertical offset of data label</source>
+                <target>Vertikaler Versatz der Balkenbeschriftung</target>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.bars.dataLabels.style.colors">
+                <source>Colors of data label</source>
+                <target>Farbe der Balkenbeschriftung</target>
+            </trans-unit>
             <trans-unit id="flexform.graphs.bars.yaxis2.show">
                 <source>Second yAxis</source>
                 <target>2. y-Achse einblenden</target>
@@ -69,13 +81,9 @@
                 <source>Series offsets x-axis</source>
                 <target>Werteversatz auf x-Achse</target>
             </trans-unit>
-            <trans-unit id="flexform.graphs.caption.label">
-                <source>Caption label</source>
-                <target>Bildunterschrift (Label)</target>
-            </trans-unit>
-            <trans-unit id="flexform.graphs.caption.text">
+            <trans-unit id="flexform.graphs.caption">
                 <source>Caption</source>
-                <target>Bildunterschrift (Text)</target>
+                <target>Bildunterschrift</target>
             </trans-unit>
             <trans-unit id="flexform.graphs.legend.show">
                 <source>Show legend</source>

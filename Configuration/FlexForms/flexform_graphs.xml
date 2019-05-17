@@ -58,6 +58,38 @@
 							</config>
 						</TCEforms>
 					</settings.bars.horizontal>
+					<settings.bars.dataLabels.offsetX>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.dataLabels.offsetX</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<config>
+								<type>input</type>
+								<size>10</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.bars.dataLabels.offsetX>
+					<settings.bars.dataLabels.offsetY>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.dataLabels.offsetY</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<config>
+								<type>input</type>
+								<size>10</size>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.bars.dataLabels.offsetY>
+					<settings.bars.dataLabels.style.colors>
+						<TCEforms>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.dataLabels.style.colors</label>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
+							<config>
+								<type>input</type>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.bars.dataLabels.style.colors>
 					<settings.xaxis.label>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.xaxis.label</label>
@@ -165,24 +197,14 @@
 							</config>
 						</TCEforms>
 					</settings.bars.offsetX>
-					<settings.caption.label>
+					<settings.caption>
 						<TCEforms>
-							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.caption.label</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>trim</eval>
-							</config>
-						</TCEforms>
-					</settings.caption.label>
-					<settings.caption.text>
-						<TCEforms>
-							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.caption.text</label>
+							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.caption</label>
 							<config>
 								<type>text</type>
 							</config>
 						</TCEforms>
-					</settings.caption.text>
+					</settings.caption>
 					<settings.legend.show>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.legend.show</label>

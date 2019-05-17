@@ -27,6 +27,11 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $contentUid;
 
     /**
+     * @var
+     */
+    protected $chartType;
+
+    /**
      * action pie
      *
      * @return void
@@ -58,6 +63,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
         $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
         $offsetX = $this->settings['bars']['offsetX'];
+        $dataLabelsOffsetX = $this->settings['bars']['dataLabels']['offsetX'];
+        $dataLabelsOffsetY = $this->settings['bars']['dataLabels']['offsetY'];
+        $dataLabelsColors = $this->settings['bars']['dataLabels']['style']['colors'];
 
         $options = array_merge($options, [
             'contentUid' => $this->contentUid,
@@ -66,6 +74,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             'stackedPercent' => true,
             'percentage' => true,
             'offsetX' => $offsetX,
+            'dataLabelsOffsetX' => $dataLabelsOffsetX,
+            'dataLabelsOffsetY' => $dataLabelsOffsetY,
+            'dataLabelsColors' => $dataLabelsColors
         ]);
 
         $this->view->assignMultiple($options);
@@ -80,7 +91,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $this->initializeAction();
 
-        $options = $this->setOptions('candlesticks');
+        $options = $this->setOptions();
 
         $options = array_merge($options, [
             'contentUid' => $this->contentUid,
@@ -95,6 +106,8 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function initializeAction()
     {
         $this->getContentUid();
+
+        $this->chartType = str_replace('Action', '', $this->actionMethodName);
 
         $this->addRenderCallToFooter();
     }
@@ -112,17 +125,46 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function addRenderCallToFooter()
     {
+
         $txRkwGraphsChart = 'txRkwGraphsChart' . $this->contentUid;
         $txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' . $this->contentUid;
         $txRkwGraphsElement = 'txRkwGraphsElement' . $this->contentUid;
+        $txRkwGraphsChartInit = 'txRkwGraphsChartInit' . $this->contentUid;
 
         $GLOBALS['TSFE']->additionalFooterData[$txRkwGraphsElement] = '
             <script type="text/javascript">
+                
+                if (typeof ' . $txRkwGraphsChartOptions . '.dataLabels !== "undefined") {
+                    ' . $txRkwGraphsChartOptions . '.dataLabels.formatter = function(val) {
+                        return Math.abs(val) + ' . $txRkwGraphsChartInit . '.unit;
+                    };
+                }
+                
+                if (typeof ' . $txRkwGraphsChartOptions . '.tooltip.y !== "undefined") {
+                    ' . $txRkwGraphsChartOptions . '.tooltip.y.formatter = function(val) {
+                        return Math.abs(val) + ' . $txRkwGraphsChartInit . '.unit;
+                    }
+                }
+                
+                 if ("' . $this->chartType . '" !== "candlesticks" && typeof ' . $txRkwGraphsChartOptions . '.yaxis !== "undefined") {
+                    ' . $txRkwGraphsChartOptions . '.yaxis[0].labels.formatter = function(val) {
+                        if (isNaN(val)) {
+                            var strArray = val.toString().split("#");
+                            if (typeof strArray[0] !== "undefined") {
+                                return strArray[0]
+                            }
+                            return val
+                        }
+                        return Math.abs(Math.round(val)) + ' . $txRkwGraphsChartInit . '.unit;
+                    }
+                 }
+
                 var ' . $txRkwGraphsChart . ' = new ApexCharts(
                     document.querySelector("#' . $txRkwGraphsChart . '"),
                     ' . $txRkwGraphsChartOptions . '
                 );
                 ' . $txRkwGraphsChart . '.render();
+
             </script>
         ';
     }
@@ -132,7 +174,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      *
      * @return array
      */
-    protected function setOptions($type = '')
+    protected function setOptions()
     {
         $scriptType = 'text/javascript';
 
@@ -150,12 +192,11 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $yaxis2Show = $this->settings['bars']['yaxis2']['show'];
         $yaxis2Label = $this->settings['bars']['yaxis2']['label'];
 
-        if ($type === 'candlesticks') {
+        if ($this->chartType === 'candlesticks') {
             $series = (trim($this->settings['series']) !== '') ? $this->settings['series'] : $this->settings['candlesticks']['series']['value'];
         }
 
-        $captionLabel = $this->settings['caption']['label'];
-        $caption = $this->settings['caption']['text'];
+        $caption = $this->settings['caption'];
 
         $legendShow = filter_var($this->settings['legend']['show'], FILTER_VALIDATE_BOOLEAN);
 
@@ -170,7 +211,6 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             'labels',
             'series',
             'unit',
-            'captionLabel',
             'caption',
             'legendShow'
         );

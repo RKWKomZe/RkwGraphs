@@ -38,6 +38,15 @@
             <trans-unit id="flexform.graphs.bars.horizontal">
                 <source>Horizontal presentation</source>
             </trans-unit>
+            <trans-unit id="flexform.graphs.bars.dataLabels.offsetX">
+                <source>Horizontal offset of data label</source>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.bars.dataLabels.offsetY">
+                <source>Vertical offset of data label</source>
+            </trans-unit>
+            <trans-unit id="flexform.graphs.bars.dataLabels.style.colors">
+                <source>Colors of data label</source>
+            </trans-unit>
             <trans-unit id="flexform.graphs.bars.yaxis2.show">
                 <source>Second yAxis</source>
             </trans-unit>
@@ -56,10 +65,7 @@
             <trans-unit id="flexform.graphs.bars.offsetX">
                 <source>Bar offsets x-axis</source>
             </trans-unit>
-            <trans-unit id="flexform.graphs.caption.label">
-                <source>Caption label</source>
-            </trans-unit>
-            <trans-unit id="flexform.graphs.caption.text">
+            <trans-unit id="flexform.graphs.caption">
                 <source>Caption</source>
             </trans-unit>
             <trans-unit id="flexform.graphs.legend.show">

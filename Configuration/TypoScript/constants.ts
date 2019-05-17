@@ -24,10 +24,7 @@ plugin.tx_rkwgraphs {
     labels = gut|mittel|schlecht
     series = 10|15|20
     unit =
-    caption {
-      label = Bildunterschrift (Label)
-      text = Bildunterschrift (Text)
-    }
+    caption = Bildunterschrift
     bars {
       yaxis2 {
         show = false
@@ -36,6 +33,13 @@ plugin.tx_rkwgraphs {
       stacked = false
       horizontal = false
       offsetX =
+      dataLabels {
+        offsetX =
+        offsetY =
+        style {
+          colors = #ffffff
+        }
+      }
     }
     donut =
     candlesticks {

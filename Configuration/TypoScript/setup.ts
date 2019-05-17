@@ -30,10 +30,7 @@ plugin.tx_rkwgraphs {
     labels = {$plugin.tx_rkwgraphs.settings.labels}
     series = {$plugin.tx_rkwgraphs.settings.series}
     unit = {$plugin.tx_rkwgraphs.settings.unit}
-    caption {
-      label = {$plugin.tx_rkwgraphs.settings.caption.label}
-      text = {$plugin.tx_rkwgraphs.settings.caption.text}
-    }
+    caption = {$plugin.tx_rkwgraphs.settings.caption}
     donut = {$plugin.tx_rkwgraphs.settings.donut}
     bars {
       yaxis2 {
@@ -43,6 +40,13 @@ plugin.tx_rkwgraphs {
       stacked = {$plugin.tx_rkwgraphs.settings.bars.stacked}
       horizontal = {$plugin.tx_rkwgraphs.settings.bars.horizontal}
       offsetX = {$plugin.tx_rkwgraphs.settings.bars.offsetX}
+      dataLabels {
+        offsetX = {$plugin.tx_rkwgraphs.settings.bars.dataLabels.offsetX}
+        offsetY = {$plugin.tx_rkwgraphs.settings.bars.dataLabels.offsetY}
+        style {
+          colors = {$plugin.tx_rkwgraphs.settings.bars.dataLabels.style.colors}
+        }
+      }
     }
     candlesticks {
       series = TEXT

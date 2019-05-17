@@ -28,8 +28,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
         //  copy scope to self to use it even within chart callbacks
         var self = this;
 
+        var subtitle = <rkwGraphs:jsString data="{caption}" />;
+        if (typeof subtitle === "object") {
+            subtitle = subtitle.text;
+        }
+
         self[txRkwGraphsChartInit] = {
             title: <rkwGraphs:jsString data="{title}" />,
+            subtitle: subtitle,
             xaxisLabel: <rkwGraphs:jsString data="{xaxisLabel}" />,
             yaxisLabel: <rkwGraphs:jsString data="{yaxisLabel}" />,
             yaxis2Show: Boolean({yaxis2Show}),
@@ -38,7 +44,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
             series: <rkwGraphs:bars.series data="{series}" />,
             unit: <rkwGraphs:jsString data="{unit}" />,
             colors: <rkwGraphs:jsArray data="{colors}" />,
-            yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
+            yAxisMinWidth: 0,
             xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
             stacked: Boolean({stacked}),
             horizontal: Boolean({horizontal}),
@@ -46,7 +52,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
             offsetX: <rkwGraphs:bars.offsetX data="{offsetX}" />,
             showZeroLineBorderColor: false,
             zeroLineBorderColor: '#f4a48e',
+            dataLabels: {
+                offsetX: Number(<rkwGraphs:jsString data="{dataLabelsOffsetX}" />),
+                offsetY: Number(<rkwGraphs:jsString data="{dataLabelsOffsetY}" />),
+                style: {
+                    colors: <rkwGraphs:jsArray data="{dataLabelsColors}" />
+                }
+            }
         }
+
+        if (self[txRkwGraphsChartInit].horizontal === true) {
+            self[txRkwGraphsChartInit].yAxisMinWidth = <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />;
+        }
+
+        console.log(self[txRkwGraphsChartInit].title);
+        console.log(self[txRkwGraphsChartInit].yAxisMinWidth);
+        console.log(self[txRkwGraphsChartInit].xAxisMinHeight);
 
         self[txRkwGraphsChartOptions] = {
             chart: {
@@ -56,10 +77,16 @@ Otherwise your changes will be overwritten the next time you save the extension 
             plotOptions: {
                 bar: {
                     horizontal: self[txRkwGraphsChartInit].horizontal,
+                    dataLabels: {
+                        position: 'top',
+                    }
                 },
             },
             title: {
                 text: self[txRkwGraphsChartInit].title,
+            },
+            subtitle: {
+                text: self[txRkwGraphsChartInit].subtitle,
             },
             series: self[txRkwGraphsChartInit].series,
             colors: self[txRkwGraphsChartInit].colors,
@@ -68,6 +95,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 formatter: function(val) {
                     return Math.abs(val) + self[txRkwGraphsChartInit].unit
                 },
+                offsetX: self[txRkwGraphsChartInit].dataLabels.offsetX,
+                offsetY: self[txRkwGraphsChartInit].dataLabels.offsetY,
+                style: {
+                    fontSize: '10px',
+                    colors: self[txRkwGraphsChartInit].dataLabels.style.colors
+                }
             },
             legend: {
                 show: self[txRkwGraphsChartInit].legendShow,
@@ -106,8 +139,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                         }
                         return val
                     },
-                 },
-
+                }
             },
             yaxis: [{
                 title: {
@@ -201,6 +233,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
             self[txRkwGraphsChartInit].showZeroLineBorderColor = (self[txRkwGraphsChartOptions].yaxis[0].min < 0) ? true : false;
         }
 
+        if (self[txRkwGraphsChartOptions].chart.stacked === true) {
+            self[txRkwGraphsChartOptions].plotOptions.bar.dataLabels.position = 'center';
+        }
 
         if (self[txRkwGraphsChartOptions].plotOptions.bar.horizontal === true) {
 
