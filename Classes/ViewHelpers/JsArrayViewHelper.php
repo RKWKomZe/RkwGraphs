@@ -43,7 +43,7 @@ class JsArrayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
         $strings = GeneralUtility::trimExplode($delimiter, $data, true);
         foreach ($strings as $string) {
             if ($checkFloat) {
-                $parsedData[] = floatval(str_replace(',', '.', $string));
+                $parsedData[] = (float)str_replace(',', '.', $string);
             } else {
                 $parsedData[] = addslashes($string);
             }

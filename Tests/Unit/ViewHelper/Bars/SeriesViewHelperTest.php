@@ -3,6 +3,11 @@ namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\Bars\SeriesViewHelper;
 
+/**
+ * Class SeriesViewHelperTest
+ *
+ * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ */
 class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
@@ -22,7 +27,7 @@ class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $viewHelper = new SeriesViewHelper();
 
-        $this->assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
 	/**
@@ -41,7 +46,7 @@ class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $viewHelper = new SeriesViewHelper();
 
-        $this->assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
 }

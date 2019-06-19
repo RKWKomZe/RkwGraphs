@@ -3,6 +3,11 @@ namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\Bars\OffsetXViewHelper;
 
+/**
+ * Class OffsetXViewHelperTest
+ *
+ * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ */
 class OffsetXViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
@@ -17,6 +22,6 @@ class OffsetXViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $viewHelper = new OffsetXViewHelper();
 
-        $this->assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 }

@@ -3,6 +3,11 @@ namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\Bars\XAxisLabelHeightViewHelper;
 
+/**
+ * Class XAxisLabelHeightViewHelperTest
+ *
+ * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ */
 class XAxisLabelHeightViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
@@ -16,6 +21,6 @@ class XAxisLabelHeightViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase 
 
         $viewHelper = new XAxisLabelHeightViewHelper();
 
-        $this->assertEquals($fixture, $viewHelper->render($string));
+        static::assertEquals($fixture, $viewHelper->render($string));
     }
 }

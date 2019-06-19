@@ -45,7 +45,7 @@ class ColorsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         $strings = GeneralUtility::trimExplode($delimiter, $data, true);
         foreach ($strings as $string) {
             if ($checkFloat) {
-                $parsedData[] = floatval(str_replace(',', '.', $string));
+                $parsedData[] = (float)str_replace(',', '.', $string);
             } else {
                 $parsedData[] = addslashes($string);
             }
@@ -54,7 +54,7 @@ class ColorsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         if (count($parsedData) > 0) {
             $colors = [
                 'upward' => $parsedData[0],
-                'downward' => $parsedData[0],
+                'downward' => $parsedData[0]
             ];
         }
 

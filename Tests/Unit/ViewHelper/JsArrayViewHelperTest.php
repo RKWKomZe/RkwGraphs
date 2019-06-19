@@ -3,6 +3,11 @@ namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\JsArrayViewHelper;
 
+/**
+ * Class JsArrayViewHelperTest
+ *
+ * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ */
 class JsArrayViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
@@ -17,7 +22,7 @@ class JsArrayViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $viewHelper = new JsArrayViewHelper();
 
-        $this->assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
 }

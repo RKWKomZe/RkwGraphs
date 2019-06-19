@@ -15,8 +15,6 @@ namespace RKW\RkwGraphs\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 /**
  * Class JsStringViewHelper
  *
@@ -32,8 +30,6 @@ class JsStringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
      * Returns string as Json
      *
      * @param string $data
-     * @param string $delimiter
-     * @param bool $checkFloat
      * @return integer
      */
     public function render($data)

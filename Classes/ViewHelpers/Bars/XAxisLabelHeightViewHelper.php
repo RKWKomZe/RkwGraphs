@@ -52,7 +52,7 @@ class XAxisLabelHeightViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
 
         }
 
-        return intval($maxStringLength * $multiplier);
+        return (int)($maxStringLength * $multiplier);
         //===
     }
 

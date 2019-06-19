@@ -3,6 +3,11 @@ namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks;
 
 use \RKW\RkwGraphs\ViewHelpers\Candlesticks\SeriesViewHelper;
 
+/**
+ * Class SeriesViewHelperTest
+ *
+ * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
+ */
 class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
@@ -31,7 +36,7 @@ Kasachstan|9,95|11,5|8,5|10,05';
 
         $viewHelper = new SeriesViewHelper();
 
-        $this->assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
 
     }
 

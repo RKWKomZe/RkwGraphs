@@ -2,8 +2,6 @@
 
 namespace RKW\RkwGraphs\Controller;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 /***
  *
  * This file is part of the "RKW Graphs" Extension for TYPO3 CMS.
@@ -43,7 +41,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $options = $this->setOptions();
 
         $options = array_merge($options, [
-            'contentUid' => $this->contentUid,
+            'contentUid' => $this->contentUid
         ]);
 
         $this->view->assignMultiple($options);
@@ -94,7 +92,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $options = $this->setOptions();
 
         $options = array_merge($options, [
-            'contentUid' => $this->contentUid,
+            'contentUid' => $this->contentUid
         ]);
 
         $this->view->assignMultiple($options);
@@ -117,7 +115,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function getContentUid()
     {
-        $this->contentUid = intval($this->configurationManager->getContentObject()->data['uid']);
+        $this->contentUid = (int)$this->configurationManager->getContentObject()->data['uid'];
     }
 
     /**
@@ -170,8 +168,6 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
-     * @param null $type
-     *
      * @return array
      */
     protected function setOptions()
