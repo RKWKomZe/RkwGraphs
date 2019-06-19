@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\Bars\SeriesViewHelper;
@@ -8,11 +9,12 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\SeriesViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itParsesSeriesStringWithLabel()
     {
         $string = 'negativ|8,0|2,0|6,0';
@@ -30,9 +32,9 @@ class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itParsesSeriesStringWithoutLabel()
     {
         $string = '8,0|2,0|6,0';

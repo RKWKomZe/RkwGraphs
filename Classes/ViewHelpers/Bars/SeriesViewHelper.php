@@ -51,17 +51,17 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $items = GeneralUtility::trimExplode($delimiter, $line, true);
             if (count($items) > 1) {
 
-                if (! is_numeric($items[0])) {
-                    $label = array_shift($items);
+                if (is_numeric($items[0])) {
 
                     $series[] = [
-                        'name' => $label,
                         'data' => $items
                     ];
 
                 } else {
+                    $label = array_shift($items);
 
                     $series[] = [
+                        'name' => $label,
                         'data' => $items
                     ];
 

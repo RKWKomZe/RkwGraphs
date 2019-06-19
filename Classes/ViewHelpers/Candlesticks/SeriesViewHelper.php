@@ -56,14 +56,14 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
                 $y = $items;
 
                 $parsedData[] = [
-                        'x' => $label,
-                        'y' => $y
-                    ];
+                    'x' => $label,
+                    'y' => $y
+                ];
 
             }
         }
 
-        $series[] =  [
+        $series[] = [
             'data' => $parsedData
         ];
 

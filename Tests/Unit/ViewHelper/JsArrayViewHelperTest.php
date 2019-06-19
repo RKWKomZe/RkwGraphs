@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\JsArrayViewHelper;
@@ -8,16 +9,17 @@ use \RKW\RkwGraphs\ViewHelpers\JsArrayViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class JsArrayViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class JsArrayViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itParsesStringToArrayWithStrings()
     {
         $string = '25,0|30,0|Label';
 
-        $fixture = ['25,0','30,0','Label'];
+        $fixture = ['25,0', '30,0', 'Label'];
         $fixture = json_encode($fixture, JSON_NUMERIC_CHECK);
 
         $viewHelper = new JsArrayViewHelper();

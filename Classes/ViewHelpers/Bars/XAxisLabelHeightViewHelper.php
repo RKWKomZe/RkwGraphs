@@ -34,7 +34,7 @@ class XAxisLabelHeightViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
      * @param string $data
      * @param string $delimiter
      * @param string $delimiterShort
-     * @param float $multiplier
+     * @param float  $multiplier
      * @return integer
      */
     public function render($data, $delimiter = '|', $delimiterShort = '#', $multiplier = 5.5)

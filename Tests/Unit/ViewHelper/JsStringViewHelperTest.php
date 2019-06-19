@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\JsStringViewHelper;
@@ -8,11 +9,12 @@ use \RKW\RkwGraphs\ViewHelpers\JsStringViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class JsStringViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class JsStringViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itReturnsStringAsJson()
     {
         $string = 'String';

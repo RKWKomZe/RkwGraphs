@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\Bars\XAxisLabelHeightViewHelper;
@@ -8,11 +9,12 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\XAxisLabelHeightViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class XAxisLabelHeightViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class XAxisLabelHeightViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itCalculatesMinHeightOfLabelsBasedOnLongestLabel()
     {
         $string = 'Indien|Kasachstan|Madagaskar|Vietnam|Bulgarien';

@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks;
 
 use \RKW\RkwGraphs\ViewHelpers\Candlesticks\SeriesViewHelper;
@@ -8,11 +9,12 @@ use \RKW\RkwGraphs\ViewHelpers\Candlesticks\SeriesViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
  */
-class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itParsesSeriesStringWithLabel()
     {
         $string = 'Indien|7,95|10,5|7,5|8,05

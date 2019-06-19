@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars;
 
 use \RKW\RkwGraphs\ViewHelpers\Bars\OffsetXViewHelper;
@@ -8,16 +9,17 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\OffsetXViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class OffsetXViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class OffsetXViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itParsesString()
     {
         $string = '-25|-30|75';
 
-        $fixture = [-25,-30,75];
+        $fixture = [-25, -30, 75];
         $fixture = json_encode($fixture, JSON_NUMERIC_CHECK);
 
         $viewHelper = new OffsetXViewHelper();

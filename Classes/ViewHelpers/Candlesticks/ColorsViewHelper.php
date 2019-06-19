@@ -33,7 +33,7 @@ class ColorsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
      *
      * @param string $data
      * @param string $delimiter
-     * @param bool $checkFloat
+     * @param bool   $checkFloat
      * @return integer
      */
     public function render($data, $delimiter = '|', $checkFloat = false)
@@ -53,7 +53,7 @@ class ColorsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
 
         if (count($parsedData) > 0) {
             $colors = [
-                'upward' => $parsedData[0],
+                'upward'   => $parsedData[0],
                 'downward' => $parsedData[0]
             ];
         }

@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks;
 
 use RKW\RkwGraphs\ViewHelpers\Candlesticks\ColorsViewHelper;
@@ -8,17 +9,18 @@ use RKW\RkwGraphs\ViewHelpers\Candlesticks\ColorsViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
  */
-class ColorsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ColorsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
+    /**
+     * @test
+     */
     public function itParsesColorsToUseSameColorForUpwardAndDownward()
     {
         $string = '#3C90EB';
 
         $fixture = [
-            'upward' => '#3C90EB',
+            'upward'   => '#3C90EB',
             'downward' => '#3C90EB'
         ];
         $fixture = json_encode($fixture, JSON_NUMERIC_CHECK);

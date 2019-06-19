@@ -2,6 +2,10 @@
 
 namespace RKW\RkwGraphs\Controller;
 
+use RKW\RkwGraphs\Domain\Model\Bar;
+use RKW\RkwGraphs\Domain\Model\Candlestick;
+use RKW\RkwGraphs\Domain\Model\Donut;
+
 /***
  *
  * This file is part of the "RKW Graphs" Extension for TYPO3 CMS.
@@ -20,17 +24,17 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 {
 
     /**
+     * @var \RKW\RkwGraphs\Domain\Model\Graph
+     */
+    protected $graph;
+
+    /**
      * @var
      */
     protected $contentUid;
 
     /**
-     * @var
-     */
-    protected $chartType;
-
-    /**
-     * action pie
+     * action donut
      *
      * @return void
      */
@@ -38,13 +42,12 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $this->initializeAction();
 
-        $options = $this->setOptions();
+        $this->graph = new Donut($this->settings, $this->contentUid);
 
-        $options = array_merge($options, [
-            'contentUid' => $this->contentUid
-        ]);
+        $this->view->assignMultiple($this->graph->process());
 
-        $this->view->assignMultiple($options);
+        $this->addRenderCallToFooter();
+
     }
 
     /**
@@ -56,28 +59,12 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $this->initializeAction();
 
-        $options = $this->setOptions();
+        $this->graph = new Bar($this->settings, $this->contentUid);
 
-        $stacked = filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN);
-        $horizontal = filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN);
-        $offsetX = $this->settings['bars']['offsetX'];
-        $dataLabelsOffsetX = $this->settings['bars']['dataLabels']['offsetX'];
-        $dataLabelsOffsetY = $this->settings['bars']['dataLabels']['offsetY'];
-        $dataLabelsColors = $this->settings['bars']['dataLabels']['style']['colors'];
+        $this->view->assignMultiple($this->graph->process());
 
-        $options = array_merge($options, [
-            'contentUid' => $this->contentUid,
-            'horizontal' => $horizontal,
-            'stacked' => $stacked,
-            'stackedPercent' => true,
-            'percentage' => true,
-            'offsetX' => $offsetX,
-            'dataLabelsOffsetX' => $dataLabelsOffsetX,
-            'dataLabelsOffsetY' => $dataLabelsOffsetY,
-            'dataLabelsColors' => $dataLabelsColors
-        ]);
+        $this->addRenderCallToFooter();
 
-        $this->view->assignMultiple($options);
     }
 
     /**
@@ -89,13 +76,11 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $this->initializeAction();
 
-        $options = $this->setOptions();
+        $this->graph = new Candlestick($this->settings, $this->contentUid);
 
-        $options = array_merge($options, [
-            'contentUid' => $this->contentUid
-        ]);
+        $this->view->assignMultiple($this->graph->process());
 
-        $this->view->assignMultiple($options);
+        $this->addRenderCallToFooter();
     }
 
     /**
@@ -104,10 +89,6 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function initializeAction()
     {
         $this->getContentUid();
-
-        $this->chartType = str_replace('Action', '', $this->actionMethodName);
-
-        $this->addRenderCallToFooter();
     }
 
     /**
@@ -144,7 +125,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     }
                 }
                 
-                 if ("' . $this->chartType . '" !== "candlesticks" && typeof ' . $txRkwGraphsChartOptions . '.yaxis !== "undefined") {
+                 if ("' . $this->graph->getChartType() . '" !== "candlesticks" && typeof ' . $txRkwGraphsChartOptions . '.yaxis !== "undefined") {
                     ' . $txRkwGraphsChartOptions . '.yaxis[0].labels.formatter = function(val) {
                         if (isNaN(val)) {
                             var strArray = val.toString().split("#");
@@ -165,51 +146,6 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
             </script>
         ';
-    }
-
-    /**
-     * @return array
-     */
-    protected function setOptions()
-    {
-        $scriptType = 'text/javascript';
-
-        $title = $this->settings['title'];
-
-        $colors = $this->settings['colors'];
-        $labels = $this->settings['labels'];
-        $series = $this->settings['series'];
-
-        $unit = $this->settings['unit'];
-
-        $xaxisLabel = $this->settings['xaxis']['label'];
-        $yaxisLabel = $this->settings['yaxis']['label'];
-
-        $yaxis2Show = $this->settings['bars']['yaxis2']['show'];
-        $yaxis2Label = $this->settings['bars']['yaxis2']['label'];
-
-        if ($this->chartType === 'candlesticks') {
-            $series = (trim($this->settings['series']) !== '') ? $this->settings['series'] : $this->settings['candlesticks']['series']['value'];
-        }
-
-        $caption = $this->settings['caption'];
-
-        $legendShow = filter_var($this->settings['legend']['show'], FILTER_VALIDATE_BOOLEAN);
-
-        return compact(
-            'scriptType',
-            'title',
-            'xaxisLabel',
-            'yaxisLabel',
-            'yaxis2Show',
-            'yaxis2Label',
-            'colors',
-            'labels',
-            'series',
-            'unit',
-            'caption',
-            'legendShow'
-        );
     }
 
 }
