@@ -26,6 +26,10 @@
 										<numIndex index="0">Candlestick</numIndex>
 										<numIndex index="1">Graphs->candlesticks</numIndex>
 									</numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">Mix</numIndex>
+                                        <numIndex index="1">Graphs->mix</numIndex>
+                                    </numIndex>
 								</items>
 							</config>
 						</TCEforms>
