@@ -1,6 +1,6 @@
 <?php
 
-namespace RKW\RkwGraphs\ViewHelpers\Candlesticks;
+namespace RKW\RkwGraphs\ViewHelpers\Mix;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -18,9 +18,9 @@ namespace RKW\RkwGraphs\ViewHelpers\Candlesticks;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class TypolinkViewHelper
+ * Class SeriesViewHelper
  *
- * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwGraphs
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -41,7 +41,6 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
     {
 
         $series = [];
-        $parsedData = [];
 
         $lines = GeneralUtility::trimExplode(PHP_EOL, $data, true);
         foreach ($lines as $line) {
@@ -52,19 +51,17 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $items = GeneralUtility::trimExplode($delimiter, $line, true);
             if (count($items) > 1) {
 
-                $label = array_shift($items);
+                $singleSeries = [];
 
-                $parsedData[] = [
-                    'x' => $label,
-                    'y' => $items
-                ];
+                $singleSeries['name'] = array_shift($items);
+                $singleSeries['type'] = array_shift($items);
+
+                $singleSeries['data'] = $items;
+
+                $series[] = $singleSeries;
 
             }
         }
-
-        $series[] = [
-            'data' => $parsedData
-        ];
 
         return json_encode($series, JSON_NUMERIC_CHECK);
         //===
