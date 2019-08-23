@@ -18,7 +18,7 @@ namespace RKW\RkwGraphs\ViewHelpers\Bars;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class TypolinkViewHelper
+ * Class SeriesViewHelper
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright Rkw Kompetenzzentrum
@@ -51,21 +51,16 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $items = GeneralUtility::trimExplode($delimiter, $line, true);
             if (count($items) > 1) {
 
-                if (is_numeric($items[0])) {
+                $singleSeries = [];
 
-                    $series[] = [
-                        'data' => $items
-                    ];
-
-                } else {
-                    $label = array_shift($items);
-
-                    $series[] = [
-                        'name' => $label,
-                        'data' => $items
-                    ];
-
+                if (!is_numeric($items[0])) {
+                    $singleSeries['name'] = array_shift($items);
                 }
+
+                $singleSeries['data'] = $items;
+
+                $series[] = $singleSeries;
+
             }
         }
 

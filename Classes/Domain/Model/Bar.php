@@ -41,14 +41,14 @@ class Bar extends Graph
 
         return array_merge($this->generalOptions, [
             'contentUid'        => $this->contentUid,
-            'horizontal'        => filter_var($this->settings['bars']['horizontal'], FILTER_VALIDATE_BOOLEAN),
-            'stacked'           => filter_var($this->settings['bars']['stacked'], FILTER_VALIDATE_BOOLEAN),
+            'horizontal'        => filter_var($this->settings[$this->chartType]['horizontal'], FILTER_VALIDATE_BOOLEAN),
+            'stacked'           => filter_var($this->settings[$this->chartType]['stacked'], FILTER_VALIDATE_BOOLEAN),
             'stackedPercent'    => true,
             'percentage'        => true,
-            'offsetX'           => $this->settings['bars']['offsetX'],
-            'dataLabelsOffsetX' => $this->settings['bars']['dataLabels']['offsetX'],
-            'dataLabelsOffsetY' => $this->settings['bars']['dataLabels']['offsetY'],
-            'dataLabelsColors'  => $this->settings['bars']['dataLabels']['style']['colors']
+            'offsetX'           => $this->settings[$this->chartType]['offsetX'],
+            'dataLabelsOffsetX' => $this->settings[$this->chartType]['dataLabels']['offsetX'],
+            'dataLabelsOffsetY' => $this->settings[$this->chartType]['dataLabels']['offsetY'],
+            'dataLabelsColors'  => $this->settings[$this->chartType]['dataLabels']['style']['colors']
         ]);
 
     }

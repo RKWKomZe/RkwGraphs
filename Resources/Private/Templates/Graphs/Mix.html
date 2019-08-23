@@ -1,0 +1,182 @@
+{namespace rkwGraphs=RKW\RkwGraphs\ViewHelpers}
+
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:render partial="Chart" arguments="{_all}" />
+
+    <!-- Build JS -->
+    <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
+    <script type="{scriptType}">
+
+        //  dynamic variable names to prevent interruption by fluid parser
+        var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
+        var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
+
+        //  copy scope to self to use it even within chart callbacks
+        var self = this;
+
+        var subtitle = <rkwGraphs:jsString data="{caption}" />;
+        if (typeof subtitle === "object") {
+            subtitle = subtitle.text;
+        }
+
+        self[txRkwGraphsChartInit] = {
+            title: <rkwGraphs:jsString data="{title}" />,
+            subtitle: subtitle,
+            xaxisLabel: <rkwGraphs:jsString data="{xaxisLabel}" />,
+            yaxisLabel: <rkwGraphs:jsString data="{yaxisLabel}" />,
+            yaxis2Show: Boolean({yaxis2Show}),
+            yaxis2Label: <rkwGraphs:jsString data="{yaxis2Label}" />,
+            labels: <rkwGraphs:jsArray data="{labels}" />,
+            series: <rkwGraphs:mix.series data="{series}" />,
+            unit: <rkwGraphs:jsString data="{unit}" />,
+            colors: <rkwGraphs:jsArray data="{colors}" />,
+            yAxisMinWidth: 0,
+            xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
+            stacked: Boolean({stacked}),
+            horizontal: Boolean({horizontal}),
+            legendShow: Boolean({legendShow}),
+            showZeroLineBorderColor: false,
+            zeroLineBorderColor: '#f4a48e',
+            dataLabels: {
+                offsetX: Number(<rkwGraphs:jsString data="{dataLabelsOffsetX}" />),
+                offsetY: Number(<rkwGraphs:jsString data="{dataLabelsOffsetY}" />),
+                style: {
+                    colors: <rkwGraphs:jsArray data="{dataLabelsColors}" />
+                }
+            }
+        }
+
+        if (self[txRkwGraphsChartInit].horizontal === true) {
+            self[txRkwGraphsChartInit].yAxisMinWidth = <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />;
+        }
+
+        self[txRkwGraphsChartOptions] = {
+            chart: {
+                type: 'line',
+                stacked: self[txRkwGraphsChartInit].stacked,
+            },
+            title: {
+                text: self[txRkwGraphsChartInit].title,
+            },
+            subtitle: {
+                text: self[txRkwGraphsChartInit].subtitle,
+            },
+            series: self[txRkwGraphsChartInit].series,
+            colors: self[txRkwGraphsChartInit].colors,
+            dataLabels: {
+                enabled:true,
+                formatter: function(val) {
+                    return Math.abs(val) + self[txRkwGraphsChartInit].unit
+                },
+                offsetX: self[txRkwGraphsChartInit].dataLabels.offsetX,
+                offsetY: self[txRkwGraphsChartInit].dataLabels.offsetY,
+                style: {
+                    fontSize: '10px',
+                    colors: self[txRkwGraphsChartInit].dataLabels.style.colors
+                }
+            },
+            legend: {
+                show: self[txRkwGraphsChartInit].legendShow,
+            },
+            tooltip: {
+                shared: false,
+                x: {
+                    formatter: function(val) {
+                        var strArray = val.toString().split('#');
+                        if (typeof strArray[1] !== 'undefined') {
+                            return strArray[1]
+                        }
+                        return val
+                    }
+                },
+                y: {
+                    formatter: function(val) {
+                        return Math.abs(val) + self[txRkwGraphsChartInit].unit
+                    }
+                },
+            },
+            xaxis: {
+                title: {
+                    text: self[txRkwGraphsChartInit].xaxisLabel,
+                },
+                categories: self[txRkwGraphsChartInit].labels,
+                labels: {
+                    trim : false,
+                    rotate: -45,
+                    minHeight: self[txRkwGraphsChartInit].xAxisMinHeight,
+                    rotateAlways: true,
+                    formatter: function(val) {
+                        var strArray = val.toString().split('#');
+                        if (typeof strArray[0] !== 'undefined') {
+                            return strArray[0]
+                        }
+                        return val
+                    },
+                }
+            },
+            yaxis: [{
+                title: {
+                    text: self[txRkwGraphsChartInit].yaxisLabel,
+                    style: {
+                        color: ''
+                    }
+                },
+                forceNiceScale : true,
+                labels: {
+                    trim : false,
+                    minWidth: self[txRkwGraphsChartInit].yAxisMinWidth,
+                    formatter: function(val) {
+                        if (isNaN(val)) {
+                            var strArray = val.toString().split('#');
+                            if (typeof strArray[0] !== 'undefined') {
+                                return strArray[0]
+                            }
+                            return val
+                        }
+                        return Math.abs(Math.round(val)) + self[txRkwGraphsChartInit].unit
+                    },
+                    style: {}
+                }
+            }],
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    options: {
+                    }
+                },
+                {
+                    breakpoint: 1025,
+                    options: {
+                        dataLabels: {
+                            enabled: true,
+                        },
+                    }
+                },
+                {
+                    breakpoint: 769,
+                    options: {
+                        dataLabels: {
+                            enabled: false,
+                        },
+                    }
+                },
+            ]
+
+        };
+
+    </script>
+</f:section>
