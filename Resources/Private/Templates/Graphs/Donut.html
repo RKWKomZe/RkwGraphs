@@ -15,88 +15,84 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 
-    <f:render partial="Chart" arguments="{_all}" />
+    <div id="app">
 
-    <!-- Build JS -->
-    <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
-    <script type="{scriptType}">
+        <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
 
-        //  dynamic variable names to prevent interruption by fluid parser
-        var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
-        var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
+    </div>
 
-        //  copy scope to self to use it even within chart callbacks
-        var self = this;
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/apexcharts"></script>
+    <script src="https://unpkg.com/vue-apexcharts"></script>
 
-        self[txRkwGraphsChartInit] = {
-            labels: <rkwGraphs:jsArray data="{labels}" />,
-            series: <rkwGraphs:jsArray data="{series}" checkFloat="true" />,
-            unit: <rkwGraphs:jsString data="{unit}" />,
-            colors: <rkwGraphs:jsArray data="{colors}" />,
-            yAxisMinWidth: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
-            xAxisMinHeight: <rkwGraphs:bars.xAxisLabelHeight data="{labels}" />,
-            legendShow: Boolean({legendShow}),
-        }
+    <script>
 
-        self[txRkwGraphsChartOptions] = {
-            chart: {
-                height: 400,
-                type: 'donut',
-                toolbar: {
-                  show: true
-                }
-            },
-            labels: self[txRkwGraphsChartInit].labels,
-            series: self[txRkwGraphsChartInit].series,
-            fill: {
-                colors: self[txRkwGraphsChartInit].colors,
-            },
-            colors: self[txRkwGraphsChartInit].colors,
-            dataLabels: {
-                enabled: true,
-            },
-            legend: {
-                show: self[txRkwGraphsChartInit].legendShow,
-            },
-            tooltip: {
-                enabled: false,
-            },
-            responsive: [
-                {
-                    breakpoint: 1200,
-                    options: {
-                        chart: {
-                            height: 'auto',
+        new Vue({
+                    el: '#app',
+                    components: {
+                        apexchart: VueApexCharts,
+                    },
+                    data: {
+                        series: <rkwGraphs:jsArray data="{series}" checkFloat="true" />,
+                        chartOptions: {
+                            chart: {
+                                height: 400,
+                                type: 'donut',
+                                toolbar: {
+                                    show: true
+                                }
+                            },
+                            labels: <f:format.raw><rkwGraphs:jsArray data="{labels}" /></f:format.raw>,
+                            colors: <f:format.raw><rkwGraphs:jsArray data="{colors}" /></f:format.raw>,
+                            dataLabels: {
+                                enabled: true,
+                            },
+                            legend: {
+                                show: <f:format.raw>{legendShow}</f:format.raw>,
+                            },
+                            tooltip: {
+                                enabled: false,
+                            },
+                            responsive: [
+                                {
+                                    breakpoint: 1200,
+                                    options: {
+                                        chart: {
+                                            height: 'auto',
+                                        },
+                                        legend: {
+                                            position: 'bottom',
+                                        }
+                                    }
+                                },
+                                {
+                                    breakpoint: 1025,
+                                    options: {
+                                        chart: {
+                                            height: 400,
+                                        },
+                                        legend: {
+                                            position: 'right',
+                                        }
+                                    }
+                                },
+                                {
+                                    breakpoint: 769,
+                                    options: {
+                                        chart: {
+                                            height: 'auto',
+                                        },
+                                        legend: {
+                                            position: 'bottom',
+                                        }
+                                    }
+                                },
+                            ]
                         },
-                        legend: {
-                            position: 'bottom',
-                        }
-                    }
-                },
-                {
-                    breakpoint: 1025,
-                    options: {
-                        chart: {
-                            height: 400,
-                        },
-                        legend: {
-                            position: 'right',
-                        }
-                    }
-                },
-                {
-                    breakpoint: 769,
-                    options: {
-                        chart: {
-                            height: 'auto',
-                        },
-                        legend: {
-                            position: 'bottom',
-                        }
-                    }
-                },
-            ]
-        };
 
+
+                    },
+
+                })
     </script>
 </f:section>

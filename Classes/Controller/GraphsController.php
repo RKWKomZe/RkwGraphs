@@ -6,6 +6,7 @@ use RKW\RkwGraphs\Domain\Model\Bar;
 use RKW\RkwGraphs\Domain\Model\Mix;
 use RKW\RkwGraphs\Domain\Model\Donut;
 use RKW\RkwGraphs\Domain\Model\Candlestick;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /***
  *
@@ -47,7 +48,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $this->view->assignMultiple($this->graph->process());
 
-        $this->addRenderCallToFooter();
+        //  $this->addRenderCallToFooter();
 
     }
 
