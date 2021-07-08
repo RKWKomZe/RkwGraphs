@@ -39,7 +39,6 @@
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.title</label>
 							<config>
 								<type>input</type>
-								<size>20</size>
 								<eval>trim</eval>
 							</config>
 						</TCEforms>
@@ -139,11 +138,7 @@
 					<settings.bars.yaxis2.label>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.yaxis2.label</label>
-							<displayCond>
-								<AND>
-									<numIndex>FIELD:settings.bars.yaxis2.show:=:1</numIndex>
-								</AND>
-							</displayCond>
+							<displayCond>FIELD:settings.bars.yaxis2.show:=:1</displayCond>
 							<config>
 								<type>input</type>
 								<size>20</size>
@@ -191,11 +186,7 @@
 					<settings.bars.offsetX>
 						<TCEforms>
 							<label>LLL:EXT:rkw_graphs/Resources/Private/Language/locallang_db.xlf:flexform.graphs.bars.offsetX</label>
-							<displayCond>
-								<AND>
-									<numIndex index="0">FIELD:switchableControllerActions:=:Graphs->bars</numIndex>
-								</AND>
-							</displayCond>
+							<displayCond>FIELD:switchableControllerActions:=:Graphs->bars</displayCond>
 							<config>
 								<type>text</type>
 							</config>
