@@ -9,7 +9,7 @@ use \RKW\RkwGraphs\ViewHelpers\Candlesticks\SeriesViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
  */
-class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class SeriesViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**

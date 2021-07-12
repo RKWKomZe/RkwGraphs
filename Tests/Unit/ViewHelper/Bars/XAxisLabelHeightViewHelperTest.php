@@ -9,7 +9,7 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\XAxisLabelHeightViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class XAxisLabelHeightViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class XAxisLabelHeightViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**
