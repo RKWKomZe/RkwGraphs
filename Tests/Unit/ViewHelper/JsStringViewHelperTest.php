@@ -9,7 +9,7 @@ use \RKW\RkwGraphs\ViewHelpers\JsStringViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class JsStringViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class JsStringViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**

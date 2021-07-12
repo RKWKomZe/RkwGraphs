@@ -9,7 +9,7 @@ use \RKW\RkwGraphs\ViewHelpers\JsArrayViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class JsArrayViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class JsArrayViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**

@@ -9,7 +9,7 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\OffsetXViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class OffsetXViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class OffsetXViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**

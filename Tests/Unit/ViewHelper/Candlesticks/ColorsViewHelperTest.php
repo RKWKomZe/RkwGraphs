@@ -9,7 +9,7 @@ use RKW\RkwGraphs\ViewHelpers\Candlesticks\ColorsViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
  */
-class ColorsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class ColorsViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**

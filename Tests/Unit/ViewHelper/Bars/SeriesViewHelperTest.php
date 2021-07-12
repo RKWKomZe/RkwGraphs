@@ -9,7 +9,7 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\SeriesViewHelper;
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
  */
-class SeriesViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class SeriesViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
 
     /**
