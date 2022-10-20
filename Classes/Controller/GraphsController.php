@@ -114,6 +114,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function getContentUid()
     {
+
         $this->contentUid = (int)$this->configurationManager->getContentObject()->data['uid'];
     }
 
@@ -130,19 +131,19 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $GLOBALS['TSFE']->additionalFooterData[$txRkwGraphsElement] = '
             <script type="text/javascript">
-                
+
                 if (typeof ' . $txRkwGraphsChartOptions . '.dataLabels !== "undefined") {
                     ' . $txRkwGraphsChartOptions . '.dataLabels.formatter = function(val) {
                         return Math.abs(val) + ' . $txRkwGraphsChartInit . '.unit;
                     };
                 }
-                
+
                 if (typeof ' . $txRkwGraphsChartOptions . '.tooltip.y !== "undefined") {
                     ' . $txRkwGraphsChartOptions . '.tooltip.y.formatter = function(val) {
                         return Math.abs(val) + ' . $txRkwGraphsChartInit . '.unit;
                     }
                 }
-                
+
                  if ("' . $this->graph->getChartType() . '" !== "candlesticks" && typeof ' . $txRkwGraphsChartOptions . '.yaxis !== "undefined") {
                     ' . $txRkwGraphsChartOptions . '.yaxis[0].labels.formatter = function(val) {
                         if (isNaN(val)) {
