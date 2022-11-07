@@ -24,7 +24,7 @@ class JsArrayViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCas
 
         $viewHelper = new JsArrayViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
 }

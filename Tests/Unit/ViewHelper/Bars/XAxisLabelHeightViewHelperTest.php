@@ -23,6 +23,6 @@ class XAxisLabelHeightViewHelperTest extends \Nimut\TestingFramework\TestCase\Un
 
         $viewHelper = new XAxisLabelHeightViewHelper();
 
-        static::assertEquals($fixture, $viewHelper->render($string));
+        self::assertEquals($fixture, $viewHelper->render($string));
     }
 }

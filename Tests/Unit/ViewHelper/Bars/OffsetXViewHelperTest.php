@@ -24,6 +24,6 @@ class OffsetXViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCas
 
         $viewHelper = new OffsetXViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 }

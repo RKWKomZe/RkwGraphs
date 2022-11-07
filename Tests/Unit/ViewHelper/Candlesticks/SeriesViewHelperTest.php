@@ -38,7 +38,7 @@ Kasachstan|9,95|11,5|8,5|10,05';
 
         $viewHelper = new SeriesViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
 
     }
 

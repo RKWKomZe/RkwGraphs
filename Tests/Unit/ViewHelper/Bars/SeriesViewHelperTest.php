@@ -29,7 +29,7 @@ class SeriesViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 
         $viewHelper = new SeriesViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
     /**
@@ -48,7 +48,7 @@ class SeriesViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 
         $viewHelper = new SeriesViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
 }
