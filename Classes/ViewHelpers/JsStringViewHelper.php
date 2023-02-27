@@ -30,7 +30,7 @@ class JsStringViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewH
      * Returns string as Json
      *
      * @param string $data
-     * @return integer
+     * @return int
      */
     public function render($data)
     {

@@ -2,61 +2,76 @@
 
 namespace RKW\RkwGraphs\Domain\Model;
 
-/***
+/*
+ * This file is part of the TYPO3 CMS project.
  *
- * This file is part of the "RKW FeeCalculator" Extension for TYPO3 CMS.
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 Christian Dilger <c.dilger@addorange.de>
- *
- ***/
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Graph
+ * Class Graph
+ *
+ * @author Christian Dilger <c.dilger@addorange.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwGraphs
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @todo since this class is used as abstract class it also should be one!
  */
 abstract class Graph extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
+    /** @var int  */
+    protected int $contentUid = 0;
 
-    protected $contentUid;
 
-    protected $settings;
+    /** @var array */
+    protected array $settings = [];
 
-    protected $chartType;
+
+    /** @var string */
+    protected string $chartType = '';
+
 
     /**
      * @var array
      */
-    protected $generalOptions;
+    protected array $generalOptions = [];
+
 
     /**
      * Graph constructor.
      *
      * @param $settings
      * @param $contentUid
+     * @todo Settings shouldn't be handled in models. Models are data-containers and non-functional
      */
     public function __construct($settings, $contentUid)
     {
         $this->settings = $settings;
         $this->contentUid = $contentUid;
-
         $this->generalOptions = $this->setGeneralOptions();
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getChartType()
+    public function getChartType(): string
     {
         return $this->chartType;
     }
 
     /**
      * @return array
+     * @todo this should not be part of a model
      */
-    public function setGeneralOptions()
+    public function setGeneralOptions(): array
     {
         $scriptType = 'text/javascript';
 
@@ -98,10 +113,11 @@ abstract class Graph extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         );
     }
 
+
     /**
      * @return array
      */
-    public function process()
+    public function process(): array
     {
         return array_merge($this->generalOptions, [
             'contentUid' => $this->contentUid

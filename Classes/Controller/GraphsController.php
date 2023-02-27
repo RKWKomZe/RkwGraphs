@@ -1,25 +1,32 @@
 <?php
-
 namespace RKW\RkwGraphs\Controller;
+
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 use RKW\RkwGraphs\Domain\Model\Bar;
 use RKW\RkwGraphs\Domain\Model\Mix;
 use RKW\RkwGraphs\Domain\Model\Donut;
 use RKW\RkwGraphs\Domain\Model\Candlestick;
 
-/***
- *
- * This file is part of the "RKW Graphs" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2019 Steffen Kroggel <developer@steffenkroggel.de>
- *
- ***/
 
 /**
- * GraphsController
+ * Class CodeController
+ *
+ * @author Christian Dilger <c.dilger@addorange.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwGraphs
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -30,9 +37,9 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $graph;
 
     /**
-     * @var
+     * @var int
      */
-    protected $contentUid;
+    protected int $contentUid;
 
     /**
      * action donut
@@ -41,10 +48,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function donutAction()
     {
-        $this->initializeAction();
-
         $this->graph = new Donut($this->settings, $this->contentUid);
-
         $this->view->assignMultiple($this->graph->process());
 
         $this->addRenderCallToFooter();
@@ -58,10 +62,8 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function barsAction()
     {
-        $this->initializeAction();
 
         $this->graph = new Bar($this->settings, $this->contentUid);
-
         $this->view->assignMultiple($this->graph->process());
 
         $this->addRenderCallToFooter();
@@ -75,10 +77,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function candlesticksAction()
     {
-        $this->initializeAction();
-
         $this->graph = new Candlestick($this->settings, $this->contentUid);
-
         $this->view->assignMultiple($this->graph->process());
 
         $this->addRenderCallToFooter();
@@ -91,10 +90,8 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function mixAction()
     {
-        $this->initializeAction();
 
         $this->graph = new Mix($this->settings, $this->contentUid);
-
         $this->view->assignMultiple($this->graph->process());
 
         $this->addRenderCallToFooter();
@@ -114,12 +111,13 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function getContentUid()
     {
-
         $this->contentUid = (int)$this->configurationManager->getContentObject()->data['uid'];
     }
 
+
     /**
      * @return void
+     * @todo Put this into the layout file of the extension. IMO this is where it belongs
      */
     protected function addRenderCallToFooter()
     {

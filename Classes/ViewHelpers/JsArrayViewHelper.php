@@ -34,7 +34,7 @@ class JsArrayViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
      * @param string $data
      * @param string $delimiter
      * @param bool   $checkFloat
-     * @return integer
+     * @return int
      */
     public function render($data, $delimiter = '|', $checkFloat = false)
     {
