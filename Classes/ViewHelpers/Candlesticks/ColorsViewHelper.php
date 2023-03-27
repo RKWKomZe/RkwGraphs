@@ -16,28 +16,53 @@ namespace RKW\RkwGraphs\ViewHelpers\Candlesticks;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class ColorsViewHelper
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwGraphs
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ColorsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ColorsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('data', 'string', 'The data to handle', true);
+        $this->registerArgument('delimiter', 'string', 'The delimiter', false, '|');
+        $this->registerArgument('checkFloat', 'bool', 'Check for float values and correct them', false, false);
+    }
+
 
     /**
      * Builds colors
      *
-     * @param string $data
-     * @param string $delimiter
-     * @param bool   $checkFloat
-     * @return integer
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
      */
-    public function render($data, $delimiter = '|', $checkFloat = false)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        /** @var string $data */
+        $data =  $arguments['data'];
+
+        /** @var string $delimiter */
+        $delimiter =  $arguments['delimiter'];
+
+        /** @var string $checkFloat */
+        $checkFloat =  $arguments['checkFloat'];
 
         $parsedData = [];
         $colors = [];
@@ -59,7 +84,5 @@ class ColorsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         }
 
         return json_encode($colors, JSON_NUMERIC_CHECK);
-        //===
     }
-
 }

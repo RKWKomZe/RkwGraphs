@@ -8,6 +8,7 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\OffsetXViewHelper;
  * Class OffsetXViewHelperTest
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ * @todo IMO that's not the way to test a ViewHelper
  */
 class OffsetXViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
@@ -24,6 +25,6 @@ class OffsetXViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCas
 
         $viewHelper = new OffsetXViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 }

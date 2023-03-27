@@ -8,6 +8,7 @@ use \RKW\RkwGraphs\ViewHelpers\Candlesticks\SeriesViewHelper;
  * Class SeriesViewHelperTest
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
+ * @todo IMO that's not the way to test a ViewHelper
  */
 class SeriesViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
@@ -38,7 +39,7 @@ Kasachstan|9,95|11,5|8,5|10,05';
 
         $viewHelper = new SeriesViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
 
     }
 

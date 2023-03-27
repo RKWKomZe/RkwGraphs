@@ -8,6 +8,7 @@ use \RKW\RkwGraphs\ViewHelpers\JsStringViewHelper;
  * Class JsStringViewHelperTest
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ * @todo IMO that's not the way to test a ViewHelper
  */
 class JsStringViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
@@ -24,7 +25,7 @@ class JsStringViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCa
 
         $viewHelper = new JsStringViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
     }
 
 }
