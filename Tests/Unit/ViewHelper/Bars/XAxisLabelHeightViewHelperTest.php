@@ -8,6 +8,7 @@ use \RKW\RkwGraphs\ViewHelpers\Bars\XAxisLabelHeightViewHelper;
  * Class XAxisLabelHeightViewHelperTest
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ * @todo IMO that's not the way to test a ViewHelper
  */
 class XAxisLabelHeightViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
@@ -23,6 +24,6 @@ class XAxisLabelHeightViewHelperTest extends \Nimut\TestingFramework\TestCase\Un
 
         $viewHelper = new XAxisLabelHeightViewHelper();
 
-        static::assertEquals($fixture, $viewHelper->render($string));
+        self::assertEquals($fixture, $viewHelper->render($string));
     }
 }

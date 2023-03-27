@@ -1,279 +1,272 @@
-{namespace rkwGraphs=RKW\RkwGraphs\ViewHelpers}
-
-<f:layout name="Default" />
-
-This template displays a NEW form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-Resources:
-Private:
-Templates:
-New.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
-
-    <f:render partial="Chart" arguments="{_all}" />
-
-    <!-- Build JS -->
-    <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
-    <script type="{scriptType}">
-
-        /*  dynamic variable names to prevent interruption by fluid parser */
-        var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
-        var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
-
-        /*  copy scope to self to use it even within chart callbacks */
-        var self = this;
-
-        var subtitle = <f:format.raw><rkwGraphs:jsString data="{caption}" /></f:format.raw>;
-        if (typeof subtitle === "object") {
-            subtitle = subtitle.text;
-        }
-
-        self[txRkwGraphsChartInit] = {
-            title: <f:format.raw><rkwGraphs:jsString data="{title}" /></f:format.raw>,
-            subtitle: subtitle,
-            xaxisLabel: <f:format.raw><rkwGraphs:jsString data="{xaxisLabel}" /></f:format.raw>,
-            yaxisLabel: <f:format.raw><rkwGraphs:jsString data="{yaxisLabel}" /></f:format.raw>,
-            yaxis2Show: Boolean({yaxis2Show}),
-            yaxis2Label: <f:format.raw><rkwGraphs:jsString data="{yaxis2Label}" /></f:format.raw>,
-            labels: <f:format.raw><rkwGraphs:jsArray data="{labels}" /></f:format.raw>,
-            series: <f:format.raw><rkwGraphs:bars.series data="{series}" /></f:format.raw>,
-            unit: <f:format.raw><rkwGraphs:jsString data="{unit}" /></f:format.raw>,
-            colors: <f:format.raw><rkwGraphs:jsArray data="{colors}" /></f:format.raw>,
-            yAxisMinWidth: 0,
-            xAxisMinHeight: <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" /></f:format.raw>,
-            stacked: Boolean({stacked}),
-            horizontal: Boolean({horizontal}),
-            legendShow: Boolean({legendShow}),
-            offsetX: <f:format.raw><rkwGraphs:bars.offsetX data="{offsetX}" /></f:format.raw>,
-            showZeroLineBorderColor: false,
-            zeroLineBorderColor: '#f4a48e',
-            dataLabels: {
-                offsetX: Number(<f:format.raw><rkwGraphs:jsString data="{dataLabelsOffsetX}" /></f:format.raw>),
-                offsetY: Number(<f:format.raw><rkwGraphs:jsString data="{dataLabelsOffsetY}" /></f:format.raw>),
-                style: {
-                    colors: <f:format.raw><rkwGraphs:jsArray data="{dataLabelsColors}" /></f:format.raw>
-                }
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:rkwGraphs="http://typo3.org/ns/RKW/RkwGraphs/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+    <f:layout name="Default" />
+  
+    <f:section name="main">
+    
+        <f:render partial="Chart" arguments="{_all}" />
+    
+        <!-- Build JS -->
+        <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
+        <script type="{scriptType}">
+    
+            /*  dynamic variable names to prevent interruption by fluid parser */
+            var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
+            var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
+    
+            /*  copy scope to self to use it even within chart callbacks */
+            var self = this;
+    
+            var subtitle = <f:format.raw><rkwGraphs:jsString data="{caption}" /></f:format.raw>;
+            if (typeof subtitle === "object") {
+                subtitle = subtitle.text;
             }
-        };
-
-        if (self[txRkwGraphsChartInit].horizontal === true) {
-            self[txRkwGraphsChartInit].yAxisMinWidth = <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" /></f:format.raw>;
-        }
-
-        self[txRkwGraphsChartOptions] = {
-            chart: {
-                type: 'bar',
-                stacked: self[txRkwGraphsChartInit].stacked,
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: self[txRkwGraphsChartInit].horizontal,
-                    dataLabels: {
-                        position: 'top',
+    
+            self[txRkwGraphsChartInit] = {
+                title: <f:format.raw><rkwGraphs:jsString data="{title}" /></f:format.raw>,
+                subtitle: subtitle,
+                xaxisLabel: <f:format.raw><rkwGraphs:jsString data="{xaxisLabel}" /></f:format.raw>,
+                yaxisLabel: <f:format.raw><rkwGraphs:jsString data="{yaxisLabel}" /></f:format.raw>,
+                yaxis2Show: Boolean({yaxis2Show}),
+                yaxis2Label: <f:format.raw><rkwGraphs:jsString data="{yaxis2Label}" /></f:format.raw>,
+                labels: <f:format.raw><rkwGraphs:jsArray data="{labels}" /></f:format.raw>,
+                series: <f:format.raw><rkwGraphs:bars.series data="{series}" /></f:format.raw>,
+                unit: <f:format.raw><rkwGraphs:jsString data="{unit}" /></f:format.raw>,
+                colors: <f:format.raw><rkwGraphs:jsArray data="{colors}" /></f:format.raw>,
+                yAxisMinWidth: 0,
+                xAxisMinHeight: <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" /></f:format.raw>,
+                stacked: Boolean({stacked}),
+                horizontal: Boolean({horizontal}),
+                legendShow: Boolean({legendShow}),
+                offsetX: <f:format.raw><rkwGraphs:bars.offsetX data="{offsetX}" /></f:format.raw>,
+                showZeroLineBorderColor: false,
+                zeroLineBorderColor: '#f4a48e',
+                dataLabels: {
+                    offsetX: Number(<f:format.raw><rkwGraphs:jsString data="{dataLabelsOffsetX}" /></f:format.raw>),
+                    offsetY: Number(<f:format.raw><rkwGraphs:jsString data="{dataLabelsOffsetY}" /></f:format.raw>),
+                    style: {
+                        colors: <f:format.raw><rkwGraphs:jsArray data="{dataLabelsColors}" /></f:format.raw>
                     }
-                },
-            },
-            title: {
-                text: self[txRkwGraphsChartInit].title,
-            },
-            subtitle: {
-                text: self[txRkwGraphsChartInit].subtitle,
-            },
-            series: self[txRkwGraphsChartInit].series,
-            colors: self[txRkwGraphsChartInit].colors,
-            dataLabels: {
-                enabled:true,
-                formatter: function(val) {
-                    return Math.abs(val) + self[txRkwGraphsChartInit].unit
-                },
-                offsetX: self[txRkwGraphsChartInit].dataLabels.offsetX,
-                offsetY: self[txRkwGraphsChartInit].dataLabels.offsetY,
-                style: {
-                    fontSize: '10px',
-                    colors: self[txRkwGraphsChartInit].dataLabels.style.colors
                 }
-            },
-            legend: {
-                show: self[txRkwGraphsChartInit].legendShow,
-            },
-            tooltip: {
-                shared: false,
-                x: {
-                    formatter: function(val) {
-                        var strArray = val.toString().split('#');
-                        if (typeof strArray[1] !== 'undefined') {
-                            return strArray[1]
-                        }
-                        return val
-                    }
+            };
+    
+            if (self[txRkwGraphsChartInit].horizontal === true) {
+                self[txRkwGraphsChartInit].yAxisMinWidth = <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" /></f:format.raw>;
+            }
+    
+            self[txRkwGraphsChartOptions] = {
+                chart: {
+                    type: 'bar',
+                    stacked: self[txRkwGraphsChartInit].stacked,
                 },
-                y: {
+                plotOptions: {
+                    bar: {
+                        horizontal: self[txRkwGraphsChartInit].horizontal,
+                        dataLabels: {
+                            position: 'top',
+                        }
+                    },
+                },
+                title: {
+                    text: self[txRkwGraphsChartInit].title,
+                },
+                subtitle: {
+                    text: self[txRkwGraphsChartInit].subtitle,
+                },
+                series: self[txRkwGraphsChartInit].series,
+                colors: self[txRkwGraphsChartInit].colors,
+                dataLabels: {
+                    enabled:true,
                     formatter: function(val) {
                         return Math.abs(val) + self[txRkwGraphsChartInit].unit
-                    }
-                },
-            },
-            xaxis: {
-                title: {
-                    text: self[txRkwGraphsChartInit].xaxisLabel,
-                },
-                categories: self[txRkwGraphsChartInit].labels,
-                labels: {
-                    trim : false,
-                    rotate: -45,
-                    minHeight: self[txRkwGraphsChartInit].xAxisMinHeight,
-                    rotateAlways: true,
-                    formatter: function(val) {
-                        var strArray = val.toString().split('#');
-                        if (typeof strArray[0] !== 'undefined') {
-                            return strArray[0]
-                        }
-                        return val
                     },
-                }
-            },
-            yaxis: [{
-                title: {
-                    text: self[txRkwGraphsChartInit].yaxisLabel,
+                    offsetX: self[txRkwGraphsChartInit].dataLabels.offsetX,
+                    offsetY: self[txRkwGraphsChartInit].dataLabels.offsetY,
                     style: {
-                        color: ''
+                        fontSize: '10px',
+                        colors: self[txRkwGraphsChartInit].dataLabels.style.colors
                     }
                 },
-                forceNiceScale : true,
-                labels: {
-                    trim : false,
-                    minWidth: self[txRkwGraphsChartInit].yAxisMinWidth,
-                    formatter: function(val) {
-                        if (isNaN(val)) {
+                legend: {
+                    show: self[txRkwGraphsChartInit].legendShow,
+                },
+                tooltip: {
+                    shared: false,
+                    x: {
+                        formatter: function(val) {
+                            var strArray = val.toString().split('#');
+                            if (typeof strArray[1] !== 'undefined') {
+                                return strArray[1]
+                            }
+                            return val
+                        }
+                    },
+                    y: {
+                        formatter: function(val) {
+                            return Math.abs(val) + self[txRkwGraphsChartInit].unit
+                        }
+                    },
+                },
+                xaxis: {
+                    title: {
+                        text: self[txRkwGraphsChartInit].xaxisLabel,
+                    },
+                    categories: self[txRkwGraphsChartInit].labels,
+                    labels: {
+                        trim : false,
+                        rotate: -45,
+                        minHeight: self[txRkwGraphsChartInit].xAxisMinHeight,
+                        rotateAlways: true,
+                        formatter: function(val) {
                             var strArray = val.toString().split('#');
                             if (typeof strArray[0] !== 'undefined') {
                                 return strArray[0]
                             }
                             return val
+                        },
+                    }
+                },
+                yaxis: [{
+                    title: {
+                        text: self[txRkwGraphsChartInit].yaxisLabel,
+                        style: {
+                            color: ''
                         }
-                        return Math.abs(Math.round(val)) + self[txRkwGraphsChartInit].unit
                     },
-                    style: {}
-                }
-            }],
-            responsive: [
-                {
-                    breakpoint: 1200,
-                    options: {
-                    }
-                },
-                {
-                    breakpoint: 1025,
-                    options: {
-                        dataLabels: {
-                            enabled: true,
+                    forceNiceScale : true,
+                    labels: {
+                        trim : false,
+                        minWidth: self[txRkwGraphsChartInit].yAxisMinWidth,
+                        formatter: function(val) {
+                            if (isNaN(val)) {
+                                var strArray = val.toString().split('#');
+                                if (typeof strArray[0] !== 'undefined') {
+                                    return strArray[0]
+                                }
+                                return val
+                            }
+                            return Math.abs(Math.round(val)) + self[txRkwGraphsChartInit].unit
                         },
+                        style: {}
                     }
-                },
-                {
-                    breakpoint: 769,
-                    options: {
-                        dataLabels: {
-                            enabled: false,
-                        },
-                    }
-                },
-            ]
-
-        };
-
-        if (self[txRkwGraphsChartInit].yaxis2Show) {
-            var ycolor = self[txRkwGraphsChartInit].colors[0];
-            var y2color = self[txRkwGraphsChartInit].colors[1];
-
-            self[txRkwGraphsChartOptions].yaxis[0].title.style.color = ycolor;
-            self[txRkwGraphsChartOptions].yaxis[0].labels.style.color = ycolor;
-
-            var yaxis2 = {
-                opposite: true,
-                labels: {
-                    style: {
+                }],
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        options: {
+                        }
+                    },
+                    {
+                        breakpoint: 1025,
+                        options: {
+                            dataLabels: {
+                                enabled: true,
+                            },
+                        }
+                    },
+                    {
+                        breakpoint: 769,
+                        options: {
+                            dataLabels: {
+                                enabled: false,
+                            },
+                        }
+                    },
+                ]
+    
+            };
+    
+            if (self[txRkwGraphsChartInit].yaxis2Show) {
+                var ycolor = self[txRkwGraphsChartInit].colors[0];
+                var y2color = self[txRkwGraphsChartInit].colors[1];
+    
+                self[txRkwGraphsChartOptions].yaxis[0].title.style.color = ycolor;
+                self[txRkwGraphsChartOptions].yaxis[0].labels.style.color = ycolor;
+    
+                var yaxis2 = {
+                    opposite: true,
+                    labels: {
+                        style: {
+                            color: y2color
+                        }
+                    },
+                    title: {
+                      text: self[txRkwGraphsChartInit].yaxis2Label,
+                      style: {
                         color: y2color
-                    }
-                },
-                title: {
-                  text: self[txRkwGraphsChartInit].yaxis2Label,
-                  style: {
-                    color: y2color
-                  }
-                },
-            };
-
-            self[txRkwGraphsChartOptions].yaxis.push(yaxis2);
-        }
-
-        if (self[txRkwGraphsChartInit].offsetX !== null && self[txRkwGraphsChartInit].offsetX.length > 0) {
-            var extractSeriesData = [],
-                totalStackSums;
-
-            self[txRkwGraphsChartInit].series.forEach(function(serie) {
-                extractSeriesData.push(serie.data);
-            });
-
-            totalStackSums = extractSeriesData.reduce((r, a) => a.map((b, i) => (r[i] || 0) + b), []);
-
-            self[txRkwGraphsChartOptions].yaxis[0].min = Math.min(...self[txRkwGraphsChartInit].offsetX) - 5;
-            self[txRkwGraphsChartOptions].yaxis[0].max = Math.max(...self[txRkwGraphsChartInit].offsetX) + Math.max(...totalStackSums);
-            self[txRkwGraphsChartOptions].plotOptions.bar.offsetX = self[txRkwGraphsChartInit].offsetX;
-            self[txRkwGraphsChartInit].showZeroLineBorderColor = (self[txRkwGraphsChartOptions].yaxis[0].min < 0) ? true : false;
-        }
-
-        if (self[txRkwGraphsChartOptions].chart.stacked === true) {
-            self[txRkwGraphsChartOptions].plotOptions.bar.dataLabels.position = 'center';
-        }
-
-        if (self[txRkwGraphsChartOptions].plotOptions.bar.horizontal === true) {
-
-            self[txRkwGraphsChartInit].series.forEach(function(serie) {
-                if (Math.min(...serie.data) < 0) {
-                    self[txRkwGraphsChartInit].showZeroLineBorderColor = true;
-                }
-            });
-
-            self[txRkwGraphsChartOptions].grid = {
-                xaxis: {
-                    lines: {
-                        show: true,
-                    }
-                },
-                yaxis: {
-                    lines: {
-                        show: false
-                    }
-                }
-            };
-        }
-
-        if (self[txRkwGraphsChartOptions].chart.stacked !== true) {
-            var extractSeriesData = [];
-
-            self[txRkwGraphsChartInit].series.forEach(function(serie) {
-                extractSeriesData.push(serie.data);
-            });
-
-            if (extractSeriesData.length === 1 && self[txRkwGraphsChartOptions].colors.length === extractSeriesData[0].length) {
-                self[txRkwGraphsChartOptions].plotOptions.bar.distributed = true;
+                      }
+                    },
+                };
+    
+                self[txRkwGraphsChartOptions].yaxis.push(yaxis2);
             }
-        }
+    
+            if (self[txRkwGraphsChartInit].offsetX !== null && self[txRkwGraphsChartInit].offsetX.length > 0) {
+                var extractSeriesData = [],
+                    totalStackSums;
+    
+                self[txRkwGraphsChartInit].series.forEach(function(serie) {
+                    extractSeriesData.push(serie.data);
+                });
+    
+                totalStackSums = extractSeriesData.reduce((r, a) => a.map((b, i) => (r[i] || 0) + b), []);
+    
+                self[txRkwGraphsChartOptions].yaxis[0].min = Math.min(...self[txRkwGraphsChartInit].offsetX) - 5;
+                self[txRkwGraphsChartOptions].yaxis[0].max = Math.max(...self[txRkwGraphsChartInit].offsetX) + Math.max(...totalStackSums);
+                self[txRkwGraphsChartOptions].plotOptions.bar.offsetX = self[txRkwGraphsChartInit].offsetX;
+                self[txRkwGraphsChartInit].showZeroLineBorderColor = (self[txRkwGraphsChartOptions].yaxis[0].min < 0) ? true : false;
+            }
+    
+            if (self[txRkwGraphsChartOptions].chart.stacked === true) {
+                self[txRkwGraphsChartOptions].plotOptions.bar.dataLabels.position = 'center';
+            }
+    
+            if (self[txRkwGraphsChartOptions].plotOptions.bar.horizontal === true) {
+    
+                self[txRkwGraphsChartInit].series.forEach(function(serie) {
+                    if (Math.min(...serie.data) < 0) {
+                        self[txRkwGraphsChartInit].showZeroLineBorderColor = true;
+                    }
+                });
+    
+                self[txRkwGraphsChartOptions].grid = {
+                    xaxis: {
+                        lines: {
+                            show: true,
+                        }
+                    },
+                    yaxis: {
+                        lines: {
+                            show: false
+                        }
+                    }
+                };
+            }
+    
+            if (self[txRkwGraphsChartOptions].chart.stacked !== true) {
+                var extractSeriesData = [];
+    
+                self[txRkwGraphsChartInit].series.forEach(function(serie) {
+                    extractSeriesData.push(serie.data);
+                });
+    
+                if (extractSeriesData.length === 1 && self[txRkwGraphsChartOptions].colors.length === extractSeriesData[0].length) {
+                    self[txRkwGraphsChartOptions].plotOptions.bar.distributed = true;
+                }
+            }
+    
+            if (self[txRkwGraphsChartInit].showZeroLineBorderColor === true) {
+                self[txRkwGraphsChartOptions].annotations = {
+                    xaxis: [{
+                        x: 0,
+                        borderColor: self[txRkwGraphsChartInit].zeroLineBorderColor,
+                        strokeDashArray: 0,
+                    }]
+                };
+            }
+        </script>
+    </f:section>
 
-        if (self[txRkwGraphsChartInit].showZeroLineBorderColor === true) {
-            self[txRkwGraphsChartOptions].annotations = {
-                xaxis: [{
-                    x: 0,
-                    borderColor: self[txRkwGraphsChartInit].zeroLineBorderColor,
-                    strokeDashArray: 0,
-                }]
-            };
-        }
-    </script>
-</f:section>
+</html>

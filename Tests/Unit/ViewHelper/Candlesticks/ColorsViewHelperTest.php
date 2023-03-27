@@ -8,6 +8,7 @@ use RKW\RkwGraphs\ViewHelpers\Candlesticks\ColorsViewHelper;
  * Class ColorsViewHelperTest
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Candlesticks
+ * @todo IMO that's not the way to test a ViewHelper
  */
 class ColorsViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
@@ -27,7 +28,7 @@ class ColorsViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 
         $viewHelper = new ColorsViewHelper();
 
-        static::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
+        self::assertJsonStringEqualsJsonString($fixture, $viewHelper->render($string));
 
     }
 

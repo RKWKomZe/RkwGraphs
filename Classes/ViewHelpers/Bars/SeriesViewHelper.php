@@ -16,32 +16,51 @@ namespace RKW\RkwGraphs\ViewHelpers\Bars;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class SeriesViewHelper
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwGraphs
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class SeriesViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('data', 'string', 'The data to handle', true);
+        $this->registerArgument('delimiter', 'string', 'The delimiter', false, '|');
+    }
+
 
     /**
      * Build series from array data
-     *
      * each line is one series, the first item of each line is the label
      *
-     * @param string $data
-     * @param string $delimiter
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public function render($data, $delimiter = '|')
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        /** @var string $data */
+        $data =  $arguments['data'];
+
+        /** @var string $delimiter */
+        $delimiter =  $arguments['delimiter'];
 
         $series = [];
-
         $lines = GeneralUtility::trimExplode(PHP_EOL, $data, true);
         foreach ($lines as $line) {
 
@@ -65,7 +84,6 @@ class SeriesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         }
 
         return json_encode($series, JSON_NUMERIC_CHECK);
-        //===
     }
 
 }

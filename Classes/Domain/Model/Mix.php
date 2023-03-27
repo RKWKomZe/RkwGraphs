@@ -2,19 +2,26 @@
 
 namespace RKW\RkwGraphs\Domain\Model;
 
-/***
+/*
+ * This file is part of the TYPO3 CMS project.
  *
- * This file is part of the "RKW FeeCalculator" Extension for TYPO3 CMS.
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 Christian Dilger <c.dilger@addorange.de>
- *
- ***/
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Mix
+ * Class Mix
+ *
+ * @author Christian Dilger <c.dilger@addorange.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwGraphs
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Mix extends Graph
 {
@@ -24,6 +31,7 @@ class Mix extends Graph
      *
      * @param $settings
      * @param $contentUid
+     * @todo Settings shouldn't be handled in models. Models are data-containers and non-functional
      */
     public function __construct($settings, $contentUid)
     {
