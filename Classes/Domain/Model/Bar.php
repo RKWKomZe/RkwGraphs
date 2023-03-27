@@ -39,6 +39,7 @@ class Bar extends Graph
         $this->chartType = 'bars';
     }
 
+
     /**
      * @return array
      * @todo Settings shouldn't be handled in models. Models are data-containers and non-functional

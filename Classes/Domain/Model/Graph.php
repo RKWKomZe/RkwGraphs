@@ -59,6 +59,7 @@ abstract class Graph extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->generalOptions = $this->setGeneralOptions();
     }
 
+
     /**
      * @return string
      */
@@ -66,6 +67,7 @@ abstract class Graph extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->chartType;
     }
+
 
     /**
      * @return array

@@ -15,7 +15,9 @@ namespace RKW\RkwGraphs\ViewHelpers\Bars;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwEtracker\Utility\CategoryUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class OffsetXViewHelper
@@ -29,24 +31,43 @@ class OffsetXViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 {
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('data', 'string', 'The data to handle', true);
+        $this->registerArgument('delimiter', 'string', 'The delimiter', false, '|');
+    }
+
+
+    /**
      * Build x axis offset for individual series from array data
-     *
      * Each separated value corresponds to the offset of an individual serie
      *
-     * @param string $data
-     * @param string $delimiter
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public function render($data, $delimiter = '|')
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        /** @var string $data */
+        $data =  $arguments['data'];
+
+        /** @var string $delimiter */
+        $delimiter =  $arguments['delimiter'];
+
 
         // cleanup - floating values and slashes
         $line = addslashes(str_replace(',', '.', $data));
-
         $series = GeneralUtility::trimExplode($delimiter, $line, true);
 
         return json_encode($series, JSON_NUMERIC_CHECK);
-        //===
     }
 
 }

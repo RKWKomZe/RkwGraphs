@@ -16,6 +16,7 @@ namespace RKW\RkwGraphs\ViewHelpers;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class JsArrayViewHelper
@@ -29,15 +30,40 @@ class JsArrayViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 {
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('data', 'string', 'The data to handle', true);
+        $this->registerArgument('delimiter', 'string', 'The delimiter', false, '|');
+        $this->registerArgument('checkFloat', 'bool', 'Check for float values and correct them', false, false);
+
+    }
+
+
+    /**
      * Parses strings to arrays
      *
-     * @param string $data
-     * @param string $delimiter
-     * @param bool   $checkFloat
-     * @return int
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
      */
-    public function render($data, $delimiter = '|', $checkFloat = false)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        /** @var string $data */
+        $data =  $arguments['data'];
+
+        /** @var string $delimiter */
+        $delimiter =  $arguments['delimiter'];
+
+        /** @var string $checkFloat */
+        $checkFloat =  $arguments['checkFloat'];
 
         $parsedData = [];
         $strings = GeneralUtility::trimExplode($delimiter, $data, true);
@@ -51,11 +77,9 @@ class JsArrayViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 
         if (count($parsedData) < 1) {
             $parsedData = [];
-            //===
         }
 
         return json_encode($parsedData, JSON_NUMERIC_CHECK);
-        //===
     }
 
 }

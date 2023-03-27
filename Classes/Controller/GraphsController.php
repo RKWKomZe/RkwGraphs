@@ -15,10 +15,10 @@ namespace RKW\RkwGraphs\Controller;
  */
 
 use RKW\RkwGraphs\Domain\Model\Bar;
+use RKW\RkwGraphs\Domain\Model\Graph;
 use RKW\RkwGraphs\Domain\Model\Mix;
 use RKW\RkwGraphs\Domain\Model\Donut;
 use RKW\RkwGraphs\Domain\Model\Candlestick;
-
 
 /**
  * Class CodeController
@@ -32,50 +32,52 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 {
 
     /**
-     * @var \RKW\RkwGraphs\Domain\Model\Graph
+     * @var \RKW\RkwGraphs\Domain\Model\Graph|null
      */
-    protected $graph;
+    protected  ?Graph $graph = null;
+
 
     /**
      * @var int
      */
-    protected int $contentUid;
+    protected int $contentUid = 0;
+
 
     /**
      * action donut
      *
      * @return void
      */
-    public function donutAction()
+    public function donutAction(): void
     {
         $this->graph = new Donut($this->settings, $this->contentUid);
         $this->view->assignMultiple($this->graph->process());
 
         $this->addRenderCallToFooter();
-
     }
+
 
     /**
      * action bars
      *
      * @return void
      */
-    public function barsAction()
+    public function barsAction(): void
     {
 
         $this->graph = new Bar($this->settings, $this->contentUid);
         $this->view->assignMultiple($this->graph->process());
 
         $this->addRenderCallToFooter();
-
     }
+
 
     /**
      * action candlesticks
      *
      * @return void
      */
-    public function candlesticksAction()
+    public function candlesticksAction(): void
     {
         $this->graph = new Candlestick($this->settings, $this->contentUid);
         $this->view->assignMultiple($this->graph->process());
@@ -83,12 +85,13 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->addRenderCallToFooter();
     }
 
+
     /**
      * action mix
      *
      * @return void
      */
-    public function mixAction()
+    public function mixAction(): void
     {
 
         $this->graph = new Mix($this->settings, $this->contentUid);
@@ -98,18 +101,20 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     }
 
-    /**
-     * @return void
-     */
-    protected function initializeAction()
-    {
-        $this->getContentUid();
-    }
 
     /**
      * @return void
      */
-    protected function getContentUid()
+    protected function initializeAction(): void
+    {
+        $this->getContentUid();
+    }
+
+
+    /**
+     * @return void
+     */
+    protected function getContentUid(): void
     {
         $this->contentUid = (int)$this->configurationManager->getContentObject()->data['uid'];
     }

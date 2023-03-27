@@ -16,6 +16,7 @@ namespace RKW\RkwGraphs\ViewHelpers\Candlesticks;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class TypolinkViewHelper
@@ -27,18 +28,37 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class SeriesViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('data', 'string', 'The data to handle', true);
+        $this->registerArgument('delimiter', 'string', 'The delimiter', false, '|');
+    }
+
 
     /**
      * Build series from array data
-     *
      * each line is one series, the first item of each line is the label
      *
-     * @param string $data
-     * @param string $delimiter
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public function render($data, $delimiter = '|')
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        /** @var string $data */
+        $data =  $arguments['data'];
+
+        /** @var string $delimiter */
+        $delimiter =  $arguments['delimiter'];
 
         $series = [];
         $parsedData = [];
@@ -67,7 +87,6 @@ class SeriesViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHel
         ];
 
         return json_encode($series, JSON_NUMERIC_CHECK);
-        //===
     }
 
 }

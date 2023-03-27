@@ -1,99 +1,92 @@
-{namespace rkwGraphs=RKW\RkwGraphs\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:rkwGraphs="http://typo3.org/ns/RKW/RkwGraphs/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
 
-<f:layout name="Default" />
-
-This template displays a NEW form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-Resources:
-Private:
-Templates:
-New.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
-
-    <f:render partial="Chart" arguments="{_all}" />
-
-
-    <!-- Build JS -->
-    <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
-    <script type="{scriptType}">
-
-        /* dynamic variable names to prevent interruption by fluid parser */
-        var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
-        var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
-
-        /* copy scope to self to use it even within chart callbacks */
-        var self = this;
-
-        self[txRkwGraphsChartInit] = {
-            title: <f:format.raw><rkwGraphs:jsString data="{title}" /></f:format.raw>,
-            xaxisLabel: <f:format.raw><rkwGraphs:jsString data="{xaxisLabel}" /></f:format.raw>,
-            yaxisLabel: <f:format.raw><rkwGraphs:jsString data="{yaxisLabel}" /></f:format.raw>,
-            labels: <f:format.raw><rkwGraphs:jsArray data="{labels}" /></f:format.raw>,
-            series: <f:format.raw><rkwGraphs:candlesticks.series data="{series}" /></f:format.raw>,
-            unit: <f:format.raw><rkwGraphs:jsString data="{unit}" /></f:format.raw>,
-            colors: <f:format.raw><rkwGraphs:candlesticks.colors data="{colors}" /></f:format.raw>,
-            yAxisMinWidth: <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" /></f:format.raw>,
-            xAxisMinHeight: <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" multiplier="8.5" /></f:format.raw>,
-            legendShow: Boolean({legendShow}),
-        };
-
-        self[txRkwGraphsChartOptions] = {
-            chart: {
-                type: 'candlestick',
-            },
-            series: self[txRkwGraphsChartInit].series,
-            plotOptions: {
-                candlestick: {
-                    colors: self[txRkwGraphsChartInit].colors
-                }
-            },
-            title: {
-                text: self[txRkwGraphsChartInit].title,
-            },
-            legend: {
-                show: self[txRkwGraphsChartInit].legendShow,
-            },
-            tooltip: {
-                shared: false,
-                x: {
-                    formatter: function(val) {
-                        var strArray = val.toString().split('#');
-                        if (typeof strArray[1] !== 'undefined') {
-                            return strArray[1]
+    <f:layout name="Default" />
+    
+    <f:section name="main">
+    
+        <f:render partial="Chart" arguments="{_all}" />
+    
+    
+        <!-- Build JS -->
+        <f:comment>using type-variable to prevent f***ing PHPstorm from trying to analyse the following code</f:comment>
+        <script type="{scriptType}">
+    
+            /* dynamic variable names to prevent interruption by fluid parser */
+            var txRkwGraphsChartOptions = 'txRkwGraphsChartOptions' + {contentUid};
+            var txRkwGraphsChartInit = 'txRkwGraphsChartInit' + {contentUid};
+    
+            /* copy scope to self to use it even within chart callbacks */
+            var self = this;
+    
+            self[txRkwGraphsChartInit] = {
+                title: <f:format.raw><rkwGraphs:jsString data="{title}" /></f:format.raw>,
+                xaxisLabel: <f:format.raw><rkwGraphs:jsString data="{xaxisLabel}" /></f:format.raw>,
+                yaxisLabel: <f:format.raw><rkwGraphs:jsString data="{yaxisLabel}" /></f:format.raw>,
+                labels: <f:format.raw><rkwGraphs:jsArray data="{labels}" /></f:format.raw>,
+                series: <f:format.raw><rkwGraphs:candlesticks.series data="{series}" /></f:format.raw>,
+                unit: <f:format.raw><rkwGraphs:jsString data="{unit}" /></f:format.raw>,
+                colors: <f:format.raw><rkwGraphs:candlesticks.colors data="{colors}" /></f:format.raw>,
+                yAxisMinWidth: <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" /></f:format.raw>,
+                xAxisMinHeight: <f:format.raw><rkwGraphs:bars.xAxisLabelHeight data="{labels}" multiplier="8.5" /></f:format.raw>,
+                legendShow: Boolean({legendShow}),
+            };
+    
+            self[txRkwGraphsChartOptions] = {
+                chart: {
+                    type: 'candlestick',
+                },
+                series: self[txRkwGraphsChartInit].series,
+                plotOptions: {
+                    candlestick: {
+                        colors: self[txRkwGraphsChartInit].colors
+                    }
+                },
+                title: {
+                    text: self[txRkwGraphsChartInit].title,
+                },
+                legend: {
+                    show: self[txRkwGraphsChartInit].legendShow,
+                },
+                tooltip: {
+                    shared: false,
+                    x: {
+                        formatter: function(val) {
+                            var strArray = val.toString().split('#');
+                            if (typeof strArray[1] !== 'undefined') {
+                                return strArray[1]
+                            }
+                            return val
                         }
-                        return val
+                    },
+                    y: {
+                        formatter: function(val) {
+                            return Math.abs(val) + '%'
+                        }
+                    },
+                },
+                xaxis: {
+                    title: {
+                        text: self[txRkwGraphsChartInit].xaxisLabel,
+                    },
+                    categories: self[txRkwGraphsChartInit].labels,
+                    labels: {
+                        trim : false,
+                        rotate: -90,
+                        minHeight: self[txRkwGraphsChartInit].xAxisMinHeight,
+                        rotateAlways: true,
                     }
                 },
-                y: {
-                    formatter: function(val) {
-                        return Math.abs(val) + '%'
-                    }
+                yaxis: {
+                    title: {
+                        text: self[txRkwGraphsChartInit].yaxisLabel,
+                    },
+                    forceNiceScale: true,
                 },
-            },
-            xaxis: {
-                title: {
-                    text: self[txRkwGraphsChartInit].xaxisLabel,
-                },
-                categories: self[txRkwGraphsChartInit].labels,
-                labels: {
-                    trim : false,
-                    rotate: -90,
-                    minHeight: self[txRkwGraphsChartInit].xAxisMinHeight,
-                    rotateAlways: true,
-                }
-            },
-            yaxis: {
-                title: {
-                    text: self[txRkwGraphsChartInit].yaxisLabel,
-                },
-                forceNiceScale: true,
-            },
-        };
-
-    </script>
-</f:section>
+            };
+    
+        </script>
+    </f:section>
+</html>

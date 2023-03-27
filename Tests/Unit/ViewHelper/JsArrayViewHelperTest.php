@@ -8,6 +8,7 @@ use \RKW\RkwGraphs\ViewHelpers\JsArrayViewHelper;
  * Class JsArrayViewHelperTest
  *
  * @package RKW\RkwGraphs\Tests\Unit\ViewHelper\Bars
+ * @todo IMO that's not the way to test a ViewHelper
  */
 class JsArrayViewHelperTest extends \Nimut\TestingFramework\TestCase\UnitTestCase
 {
