@@ -116,6 +116,7 @@ class GraphsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function getContentUid(): void
     {
+        // @extensionScannerIgnoreLine
         $this->contentUid = (int)$this->configurationManager->getContentObject()->data['uid'];
     }
 
