@@ -8,7 +8,7 @@ call_user_func(
         // Register Plugin
         //=================================================================
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.RkwGraphs',
+            $extKey,
             'Graphs',
             'RKW Graphs'
         );
